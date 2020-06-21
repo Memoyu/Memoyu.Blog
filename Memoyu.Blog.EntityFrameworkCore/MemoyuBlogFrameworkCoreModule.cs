@@ -14,9 +14,10 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Text;
+
+using Memoyu.Blog.Configurations;
+using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Modularity;
 
@@ -32,7 +33,19 @@ namespace Memoyu.Blog
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            base.ConfigureServices(context);
+            context.Services.AddAbpDbContext<MemoyuBlogDbContext>(options =>
+            {
+                options.AddDefaultRepositories(includeAllEntities: true);
+            });
+            Configure<AbpDbContextOptions>(options =>
+            {
+                switch (AppSettings.EnableDb)
+                {
+                    case "MySQL":
+                        options.UseMySQL();
+                        break;
+                }
+            });
         }
     }
 }

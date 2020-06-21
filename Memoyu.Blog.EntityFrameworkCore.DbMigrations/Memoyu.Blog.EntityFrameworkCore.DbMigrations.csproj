@@ -8,11 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Memoyu.Blog.EntityFrameworkCore\Memoyu.Blog.EntityFrameworkCore.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4" />
+    <ProjectReference Include="..\Memoyu.Blog.EntityFrameworkCore\Memoyu.Blog.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

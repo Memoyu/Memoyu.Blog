@@ -4,5 +4,115 @@
         <name>Memoyu.Blog.Domain</name>
     </assembly>
     <members>
+        <member name="T:Memoyu.Blog.Blog.Category">
+            <summary>
+            分类表
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Category.CategoryName">
+            <summary>
+            分类名称
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Category.DisplayName">
+            <summary>
+            展示名称
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Blog.FriendLink">
+            <summary>
+            友情链接表
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.FriendLink.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.FriendLink.LinkUrl">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Blog.Post">
+            <summary>
+            发表文章表
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Post.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Post.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Post.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Post.Html">
+            <summary>
+            HTML
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Post.Markdown">
+            <summary>
+            Markdown
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Post.CategoryId">
+            <summary>
+            分类Id
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Post.CreationTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Blog.PostTag">
+            <summary>
+            文章对应标签表
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.PostTag.PostId">
+            <summary>
+            文章Id
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.PostTag.TagId">
+            <summary>
+            标签Id
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Blog.Tag">
+            <summary>
+            标签表
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Tag.TagName">
+            <summary>
+            标签名称
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Blog.Tag.DisplayName">
+            <summary>
+            展示名称
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Configurations.AppSettings.EnableDb">
+            <summary>
+            开启状态的Db
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Configurations.AppSettings.ConnectionString">
+            <summary>
+            Db连接配置信息
+            </summary>
+        </member>
     </members>
 </doc>
