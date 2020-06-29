@@ -1,6 +1,12 @@
-﻿using Memoyu.Blog.Swagger;
+﻿using System;
+using Memoyu.Blog.Domain.Configurations;
+using Memoyu.Blog.EntityFrameworkCore;
+using Memoyu.Blog.Swagger;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Autofac;
@@ -22,7 +28,32 @@ namespace Memoyu.Blog.HttpApi.Hosting
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            base.ConfigureServices(context);
+            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //是否验证颁发者
+                    ValidateIssuer = true,
+                    //是否验证访问群体
+                    ValidateAudience = true,
+                    //是否验证生存周期
+                    ValidateLifetime = true,
+                    //验证Token的时间偏移量
+                    ClockSkew = TimeSpan.FromSeconds(30),
+                    ValidateIssuerSigningKey = true,
+                    // 访问群体
+                    ValidAudience = AppSettings.JWT.Domain,
+                    //颁发者
+                    ValidIssuer = AppSettings.JWT.Domain,
+                    //安全秘钥
+                    IssuerSigningKey =  new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.GetBytes())
+
+                };
+            });
+            //认证授权
+            context.Services.AddAuthentication();
+            //Http请求
+            context.Services.AddHttpClient();
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)

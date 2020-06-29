@@ -20,7 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.EntityFrameworkCore.DbMigrations
 {
     /// <summary>
     /// 主要是用来使用Code-First命令的(Add-Migration 和 Update-Database ...)

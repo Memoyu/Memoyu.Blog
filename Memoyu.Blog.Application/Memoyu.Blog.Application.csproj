@@ -4,7 +4,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Memoyu.Blog</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />
     <PackageReference Include="Volo.Abp.Identity.Application" Version="2.9.0" />
   </ItemGroup>
 

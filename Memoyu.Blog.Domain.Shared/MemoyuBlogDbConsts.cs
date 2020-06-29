@@ -15,7 +15,7 @@
 *   ================================= 
 ***************************************************************************/
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.Domain.Shared
 {
     public class MemoyuBlogDbConsts
     {

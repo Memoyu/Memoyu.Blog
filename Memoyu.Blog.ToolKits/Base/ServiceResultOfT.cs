@@ -23,7 +23,7 @@ namespace Memoyu.Blog.ToolKits.Base
     /// 服务层响应实体（泛型）
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ServiceResultOfT<T> : ServiceResult where T : class
+    public class ServiceResult<T> : ServiceResult where T : class
     {
         /// <summary>
         /// 响应结果

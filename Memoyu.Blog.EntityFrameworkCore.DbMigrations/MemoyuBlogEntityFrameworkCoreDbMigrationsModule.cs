@@ -14,13 +14,11 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Modularity;
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.EntityFrameworkCore.DbMigrations
 {
     [DependsOn(typeof(MemoyuBlogFrameworkCoreModule))]
     public class MemoyuBlogEntityFrameworkCoreDbMigrationsModule : AbpModule

@@ -15,12 +15,12 @@
 *   ================================= 
 ***************************************************************************/
 
-using Memoyu.Blog.Blog;
+using Memoyu.Blog.Domain.Blog;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.EntityFrameworkCore
 {
     [ConnectionStringName("MySql")]
     public class MemoyuBlogDbContext:AbpDbContext<MemoyuBlogDbContext>

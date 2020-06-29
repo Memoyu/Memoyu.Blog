@@ -18,7 +18,7 @@
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.EntityFrameworkCore.DbMigrations
 {
     /// <summary>
     /// 数据迁移上下文访问对象

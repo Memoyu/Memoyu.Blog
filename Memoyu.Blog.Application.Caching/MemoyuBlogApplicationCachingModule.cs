@@ -15,6 +15,7 @@
 *   ================================= 
 ***************************************************************************/
 
+using Memoyu.Blog.Domain;
 using Volo.Abp.Caching;
 using Volo.Abp.Modularity;
 

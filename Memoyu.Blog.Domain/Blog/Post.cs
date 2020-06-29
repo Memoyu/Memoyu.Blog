@@ -14,10 +14,11 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
+
 using System;
 using Volo.Abp.Domain.Entities;
 
-namespace Memoyu.Blog.Blog
+namespace Memoyu.Blog.Domain.Blog
 {
     /// <summary>
     /// 发表文章表

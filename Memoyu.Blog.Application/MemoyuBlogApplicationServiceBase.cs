@@ -17,7 +17,7 @@
 
 using Volo.Abp.Application.Services;
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.Application
 {
     public class ServiceBase : ApplicationService
     {

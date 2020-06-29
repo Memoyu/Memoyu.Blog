@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Memoyu.Blog.Application.Contracts.xml" />
+    <None Remove="Memoyu.Blog.Domain.xml" />
+    <None Remove="Memoyu.Blog.HttpApi.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Memoyu.Blog.EntityFrameworkCore\Memoyu.Blog.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Memoyu.Blog.HttpApi\Memoyu.Blog.HttpApi.csproj" />
     <ProjectReference Include="..\Memoyu.Blog.Swagger\Memoyu.Blog.Swagger.csproj" />

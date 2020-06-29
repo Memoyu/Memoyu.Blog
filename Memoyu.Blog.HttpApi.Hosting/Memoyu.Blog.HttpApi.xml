@@ -4,7 +4,27 @@
         <name>Memoyu.Blog.HttpApi</name>
     </assembly>
     <members>
-        <member name="T:Memoyu.Blog.MomeyuBlogHttpApiModule">
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.AuthController.GetLoginAddressAsync">
+            <summary>
+            获取登录GitHub地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.AuthController.GetAccessTokenAsync(System.String)">
+            <summary>
+            获取AccessToken
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.AuthController.GenerateTokenAsync(System.String)">
+            <summary>
+            登录成功，生成Token
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Memoyu.Blog.HttpApi.MomeyuBlogHttpApiModule">
             <summary>
             职责主要是编写Controller，所有的API都写在这里，同时它要依赖于Application模块
             </summary>

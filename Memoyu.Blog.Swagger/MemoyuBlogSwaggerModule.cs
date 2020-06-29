@@ -15,6 +15,7 @@
 *   ================================= 
 ***************************************************************************/
 
+using Memoyu.Blog.Domain;
 using Microsoft.AspNetCore.Builder;
 using Volo.Abp;
 using Volo.Abp.Modularity;

@@ -14,14 +14,12 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Microsoft.Extensions.Configuration;
 
-namespace Memoyu.Blog.Configurations
+namespace Memoyu.Blog.Domain.Configurations
 {
     public class AppSettings
     {
@@ -42,5 +40,37 @@ namespace Memoyu.Blog.Configurations
         /// Db连接配置信息
         /// </summary>
         public static string ConnectionString => _configuration.GetConnectionString(EnableDb);
+        /// <summary>
+        /// ApiVersion
+        /// </summary>
+        public static string ApiVersion => _configuration["ApiVersion"];
+
+        /// <summary>
+        /// GitHub
+        /// </summary>
+        public static class GitHub
+        {
+            public static int UserId => Convert.ToInt32(_configuration["Github:UserId"]);
+
+            public static string Client_ID => _configuration["Github:ClientID"];
+
+            public static string Client_Secret => _configuration["Github:ClientSecret"];
+
+            public static string Redirect_Uri => _configuration["Github:RedirectUri"];
+
+            public static string ApplicationName => _configuration["Github:ApplicationName"];
+        }
+        /// <summary>
+        /// JWT
+        /// </summary>
+        public static class JWT
+        {
+            public static string Domain => _configuration["JWT:Domain"];
+
+            public static string SecurityKey => _configuration["JWT:SecurityKey"];
+
+            public static int Expires => Convert.ToInt32(_configuration["JWT:Expires"]);
+        }
+
     }
 }

@@ -17,7 +17,7 @@
 
 using Volo.Abp.Domain.Entities;
 
-namespace Memoyu.Blog.Blog
+namespace Memoyu.Blog.Domain.Blog
 {
     /// <summary>
     /// 文章对应标签表

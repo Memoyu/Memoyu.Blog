@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.Application
 {
     public class BlogApplicationAutoMapperProfile : Profile
     {

@@ -14,12 +14,14 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
-using Memoyu.Blog.Blog;
+
+using Memoyu.Blog.Domain.Blog;
+using Memoyu.Blog.Domain.Shared;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
-using static Memoyu.Blog.MemoyuBlogDbConsts;
+using static Memoyu.Blog.Domain.Shared.MemoyuBlogDbConsts;
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.EntityFrameworkCore
 {
     public static class MemoyuBlogDbContextModelCreatingExtensions
     {

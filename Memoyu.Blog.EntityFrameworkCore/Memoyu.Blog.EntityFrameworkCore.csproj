@@ -4,7 +4,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Memoyu.Blog</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>

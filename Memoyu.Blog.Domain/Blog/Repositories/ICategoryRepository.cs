@@ -1,12 +1,10 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   命名空间 ：Memoyu.Blog.HelloWord.Impl
-*   文件名称 ：HelloWorldService
+*   文件名称 ：ICategoryRepository
 *   =================================
 *   创 建 者 ：Memoyu
-*   电子邮箱 ：mmy6076@outlook.com
-*   创建日期 ：2020-06-21 0:19:59
+*   创建日期 ：2020/6/28 16:53:38
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -15,13 +13,14 @@
 *   ================================= 
 ***************************************************************************/
 
-namespace Memoyu.Blog.HelloWorld.Impl
+using Volo.Abp.Domain.Repositories;
+
+namespace Memoyu.Blog.Domain.Blog.Repositories
 {
-    public class HelloWorldService : ServiceBase, IHelloWorldService
+    /// <summary>
+    /// ICategoryRepository
+    /// </summary>
+    public interface ICategoryRepository : IRepository<Category, int>
     {
-        public string HelloWorld()
-        {
-            return "Hello World";
-        }
     }
 }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Memoyu.Blog.Migrations
+namespace Memoyu.Blog.EntityFrameworkCore.DbMigrations.Migrations
 {
     public partial class Initial : Migration
     {

@@ -15,13 +15,14 @@
 *   ================================= 
 ***************************************************************************/
 
-using Memoyu.Blog.Configurations;
+using Memoyu.Blog.Domain;
+using Memoyu.Blog.Domain.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Modularity;
 
-namespace Memoyu.Blog
+namespace Memoyu.Blog.EntityFrameworkCore
 {
     /// <summary>
     /// 它主要是集成了EF Core，自定义仓储

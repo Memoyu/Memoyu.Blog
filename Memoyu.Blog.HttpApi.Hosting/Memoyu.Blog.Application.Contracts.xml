@@ -4,5 +4,85 @@
         <name>Memoyu.Blog.Application.Contracts</name>
     </assembly>
     <members>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.CategoryDto.CategoryName">
+            <summary>
+            分类名称
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.CategoryDto.DisplayName">
+            <summary>
+            展示名称
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Html">
+            <summary>
+            HTML
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Markdown">
+            <summary>
+            Markdown
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.CreationTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Category">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Tags">
+            <summary>
+            标签列表
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Previous">
+            <summary>
+            上一篇
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Next">
+            <summary>
+            下一篇
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostForPagedDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostForPagedDto.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.TagDto.TagName">
+            <summary>
+            标签名称
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.TagDto.DisplayName">
+            <summary>
+            展示名称
+            </summary>
+        </member>
     </members>
 </doc>

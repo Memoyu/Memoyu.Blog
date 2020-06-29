@@ -1,12 +1,10 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   命名空间 ：Memoyu.Blog.HelloWord
-*   文件名称 ：IHelloWorldService
+*   文件名称 ：TagDto
 *   =================================
 *   创 建 者 ：Memoyu
-*   电子邮箱 ：mmy6076@outlook.com
-*   创建日期 ：2020-06-21 0:19:48
+*   创建日期 ：2020/6/26 17:27:32
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -15,10 +13,18 @@
 *   ================================= 
 ***************************************************************************/
 
-namespace Memoyu.Blog.HelloWorld
+namespace Memoyu.Blog.Application.Contracts.Blog
 {
-    public interface IHelloWorldService
+    public class TagDto
     {
-        string HelloWorld();
+        /// <summary>
+        /// 标签名称
+        /// </summary>
+        public string TagName { get; set; }
+
+        /// <summary>
+        /// 展示名称
+        /// </summary>
+        public string DisplayName { get; set; }
     }
 }

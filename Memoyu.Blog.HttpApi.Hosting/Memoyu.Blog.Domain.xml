@@ -4,114 +4,208 @@
         <name>Memoyu.Blog.Domain</name>
     </assembly>
     <members>
-        <member name="T:Memoyu.Blog.Blog.Category">
+        <member name="T:Memoyu.Blog.Domain.Blog.Category">
             <summary>
             分类表
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Category.CategoryName">
+        <member name="P:Memoyu.Blog.Domain.Blog.Category.CategoryName">
             <summary>
             分类名称
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Category.DisplayName">
+        <member name="P:Memoyu.Blog.Domain.Blog.Category.DisplayName">
             <summary>
             展示名称
             </summary>
         </member>
-        <member name="T:Memoyu.Blog.Blog.FriendLink">
+        <member name="T:Memoyu.Blog.Domain.Blog.FriendLink">
             <summary>
             友情链接表
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.FriendLink.Title">
+        <member name="P:Memoyu.Blog.Domain.Blog.FriendLink.Title">
             <summary>
             标题
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.FriendLink.LinkUrl">
+        <member name="P:Memoyu.Blog.Domain.Blog.FriendLink.LinkUrl">
             <summary>
             链接
             </summary>
         </member>
-        <member name="T:Memoyu.Blog.Blog.Post">
+        <member name="T:Memoyu.Blog.Domain.Blog.Post">
             <summary>
             发表文章表
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Post.Title">
+        <member name="P:Memoyu.Blog.Domain.Blog.Post.Title">
             <summary>
             标题
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Post.Author">
+        <member name="P:Memoyu.Blog.Domain.Blog.Post.Author">
             <summary>
             作者
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Post.Url">
+        <member name="P:Memoyu.Blog.Domain.Blog.Post.Url">
             <summary>
             链接
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Post.Html">
+        <member name="P:Memoyu.Blog.Domain.Blog.Post.Html">
             <summary>
             HTML
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Post.Markdown">
+        <member name="P:Memoyu.Blog.Domain.Blog.Post.Markdown">
             <summary>
             Markdown
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Post.CategoryId">
+        <member name="P:Memoyu.Blog.Domain.Blog.Post.CategoryId">
             <summary>
             分类Id
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Post.CreationTime">
+        <member name="P:Memoyu.Blog.Domain.Blog.Post.CreationTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="T:Memoyu.Blog.Blog.PostTag">
+        <member name="T:Memoyu.Blog.Domain.Blog.PostTag">
             <summary>
             文章对应标签表
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.PostTag.PostId">
+        <member name="P:Memoyu.Blog.Domain.Blog.PostTag.PostId">
             <summary>
             文章Id
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.PostTag.TagId">
+        <member name="P:Memoyu.Blog.Domain.Blog.PostTag.TagId">
             <summary>
             标签Id
             </summary>
         </member>
-        <member name="T:Memoyu.Blog.Blog.Tag">
+        <member name="T:Memoyu.Blog.Domain.Blog.Repositories.ICategoryRepository">
+            <summary>
+            ICategoryRepository
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Domain.Blog.Repositories.IFriendLinkRepository">
+            <summary>
+            IFriendLinkRepository
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Domain.Blog.Repositories.IPostRepository">
+            <summary>
+            IPostRepository
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Domain.Blog.Repositories.IPostTagRepository">
+            <summary>
+            IPostTagRepository
+            </summary>
+        </member>
+        <member name="M:Memoyu.Blog.Domain.Blog.Repositories.IPostTagRepository.BulkInsertAsync(System.Collections.Generic.IEnumerable{Memoyu.Blog.Domain.Blog.PostTag})">
+            <summary>
+            批量插入
+            </summary>
+            <param name="postTags"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Memoyu.Blog.Domain.Blog.Repositories.ITagRepository">
+            <summary>
+            ITagRepository
+            </summary>
+        </member>
+        <member name="M:Memoyu.Blog.Domain.Blog.Repositories.ITagRepository.BulkInsertAsync(System.Collections.Generic.IEnumerable{Memoyu.Blog.Domain.Blog.Tag})">
+            <summary>
+            批量插入
+            </summary>
+            <param name="tags"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Memoyu.Blog.Domain.Blog.Tag">
             <summary>
             标签表
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Tag.TagName">
+        <member name="P:Memoyu.Blog.Domain.Blog.Tag.TagName">
             <summary>
             标签名称
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Blog.Tag.DisplayName">
+        <member name="P:Memoyu.Blog.Domain.Blog.Tag.DisplayName">
             <summary>
             展示名称
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Configurations.AppSettings.EnableDb">
+        <member name="P:Memoyu.Blog.Domain.Configurations.AppSettings.EnableDb">
             <summary>
             开启状态的Db
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Configurations.AppSettings.ConnectionString">
+        <member name="P:Memoyu.Blog.Domain.Configurations.AppSettings.ConnectionString">
             <summary>
             Db连接配置信息
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Domain.Configurations.AppSettings.ApiVersion">
+            <summary>
+            ApiVersion
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Domain.Configurations.AppSettings.GitHub">
+            <summary>
+            GitHub
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Domain.Configurations.AppSettings.JWT">
+            <summary>
+            JWT
+            </summary>
+        </member>
+        <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.API_Authorize">
+            <summary>
+            GET请求，跳转GitHub登录界面，获取用户授权，得到code
+            </summary>
+        </member>
+        <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.API_AccessToken">
+            <summary>
+            POST请求，根据code得到access_token
+            </summary>
+        </member>
+        <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.API_User">
+            <summary>
+            GET请求，根据access_token得到用户信息
+            </summary>
+        </member>
+        <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.UserId">
+            <summary>
+            Github UserId
+            </summary>
+        </member>
+        <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.Client_ID">
+            <summary>
+            Client ID
+            </summary>
+        </member>
+        <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.Client_Secret">
+            <summary>
+            Client Secret
+            </summary>
+        </member>
+        <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.Redirect_Uri">
+            <summary>
+            Authorization callback URL
+            </summary>
+        </member>
+        <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.ApplicationName">
+            <summary>
+            Application name
             </summary>
         </member>
     </members>
