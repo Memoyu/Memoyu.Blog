@@ -24,6 +24,20 @@
             <param name="accessToken"></param>
             <returns></returns>
         </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.GetPostForAdminAsync(System.Int32)">
+            <summary>
+            获取文章详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.GetPostDetailAsync(System.String)">
+            <summary>
+            根据URL获取文章详情
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
         <member name="T:Memoyu.Blog.HttpApi.MomeyuBlogHttpApiModule">
             <summary>
             职责主要是编写Controller，所有的API都写在这里，同时它要依赖于Application模块

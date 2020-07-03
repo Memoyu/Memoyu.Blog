@@ -2,8 +2,11 @@
 using Memoyu.Blog.Domain.Configurations;
 using Memoyu.Blog.EntityFrameworkCore;
 using Memoyu.Blog.Swagger;
+using Memoyu.Blog.ToolKits.Base;
+using Memoyu.Blog.ToolKits.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
@@ -46,9 +49,26 @@ namespace Memoyu.Blog.HttpApi.Hosting
                     //颁发者
                     ValidIssuer = AppSettings.JWT.Domain,
                     //安全秘钥
-                    IssuerSigningKey =  new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.GetBytes())
+                    IssuerSigningKey = new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.GetBytes())
 
                 };
+                //应用程序提供的对象，用于处理承载引发的事件，身份验证处理程序
+                options.Events = new JwtBearerEvents
+                {
+                    OnChallenge = async context =>
+                    {
+                        //跳过默认的处理逻辑，返回以下数据模型
+                        context.HandleResponse();
+                        context.Response.ContentType = "application/json;charset=utf-8";
+                        context.Response.StatusCode = StatusCodes.Status200OK;
+
+                        var result = new ServiceResult();
+                        result.IsFailed("UnAuthorized");
+
+                        await context.Response.WriteAsync(result.ToJson());
+                    }
+                };
+
             });
             //认证授权
             context.Services.AddAuthentication();

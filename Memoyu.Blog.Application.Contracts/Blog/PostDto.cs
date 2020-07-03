@@ -1,12 +1,10 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   命名空间 ：Memoyu.Blog.Blog
-*   文件名称 ：Post
+*   文件名称 ：PostDto
 *   =================================
 *   创 建 者 ：Memoyu
-*   电子邮箱 ：mmy6076@outlook.com
-*   创建日期 ：2020-06-21 22:30:25
+*   创建日期 ：2020/7/3 17:42:42
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -16,14 +14,10 @@
 ***************************************************************************/
 
 using System;
-using Volo.Abp.Domain.Entities;
 
-namespace Memoyu.Blog.Domain.Blog
+namespace Memoyu.Blog.Application.Contracts.Blog
 {
-    /// <summary>
-    /// 发表文章表
-    /// </summary>
-    public class Post : Entity<int>
+    public class PostDto
     {
         /// <summary>
         /// 标题

@@ -1,22 +1,30 @@
-﻿namespace Memoyu.Blog.HttpApi.Controllers
+﻿using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.Domain.Shared;
+using Memoyu.Blog.ToolKits.Base;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Memoyu.Blog.HttpApi.Controllers
 {
     public partial class BlogController
     {
         #region Posts
 
-        ///// <summary>
-        ///// 获取文章详情
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpGet]
-        //[Authorize]
-        //[Route("admin/post")]
-        //[ApiExplorerSettings(GroupName = MemoyuBlogConsts.Grouping.GroupName_v2)]
-        //public async Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync([Required] int id)
-        //{
-        //    return await _blogService.GetPostForAdminAsync(id);
-        //}
+        /// <summary>
+        /// 获取文章详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route("admin/post")]
+        [ApiExplorerSettings(GroupName = MemoyuBlogConsts.Grouping.GroupName_v2)]
+        public async Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync([Required] int id)
+        {
+            return await _blogService.GetPostForAdminAsync(id);
+        }
 
         ///// <summary>
         ///// 分页查询文章列表
