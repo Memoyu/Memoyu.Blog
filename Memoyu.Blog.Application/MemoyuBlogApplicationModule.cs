@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Identity;
+﻿using Memoyu.Blog.Application.Caching;
+using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 
 namespace Memoyu.Blog.Application
@@ -7,13 +8,14 @@ namespace Memoyu.Blog.Application
     /// 为我们的应用服务层，在这里编写服务的接口以及对应的实现
     /// </summary>
     [DependsOn(
-        typeof(AbpIdentityApplicationModule)
+        typeof(AbpIdentityApplicationModule),
+        typeof(MemoyuBlogApplicationCachingModule)
     )]
     public class MemoyuBlogApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-         
+
         }
     }
 }

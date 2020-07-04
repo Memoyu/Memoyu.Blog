@@ -71,6 +71,13 @@ namespace Memoyu.Blog.Domain.Configurations
 
             public static int Expires => Convert.ToInt32(_configuration["JWT:Expires"]);
         }
+        /// <summary>
+        /// cache
+        /// </summary>
+        public static class Caching
+        {
+            public static string RedisConnectionString => _configuration["Caching:RedisConnectionString"];
+        }
 
     }
 }

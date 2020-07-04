@@ -168,6 +168,11 @@
             JWT
             </summary>
         </member>
+        <member name="T:Memoyu.Blog.Domain.Configurations.AppSettings.Caching">
+            <summary>
+            cache
+            </summary>
+        </member>
         <member name="F:Memoyu.Blog.Domain.Configurations.GitHubConfig.API_Authorize">
             <summary>
             GET请求，跳转GitHub登录界面，获取用户授权，得到code

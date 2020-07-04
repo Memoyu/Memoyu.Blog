@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Linq;
 using Memoyu.Blog.Domain.Configurations;
 using Memoyu.Blog.EntityFrameworkCore;
+using Memoyu.Blog.HttpApi.Hosting.Filters;
+using Memoyu.Blog.HttpApi.Hosting.Middleware;
 using Memoyu.Blog.Swagger;
 using Memoyu.Blog.ToolKits.Base;
 using Memoyu.Blog.ToolKits.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 
@@ -31,6 +36,16 @@ namespace Memoyu.Blog.HttpApi.Hosting
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            Configure<MvcOptions>(options =>
+            {
+                //获得AbpExceptionFilter拦截器
+                var filterMetadata = options.Filters.FirstOrDefault(f =>
+                    f is ServiceFilterAttribute attribute && attribute.ServiceType == typeof(AbpExceptionFilter));
+                //移除拦截器
+                options.Filters.Remove(filterMetadata);
+                //添加自定义拦截器
+                options.Filters.Add<MemoyuExceptionFilter>();
+            });
             context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -52,22 +67,25 @@ namespace Memoyu.Blog.HttpApi.Hosting
                     IssuerSigningKey = new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.GetBytes())
 
                 };
-                //应用程序提供的对象，用于处理承载引发的事件，身份验证处理程序
-                options.Events = new JwtBearerEvents
-                {
-                    OnChallenge = async context =>
-                    {
-                        //跳过默认的处理逻辑，返回以下数据模型
-                        context.HandleResponse();
-                        context.Response.ContentType = "application/json;charset=utf-8";
-                        context.Response.StatusCode = StatusCodes.Status200OK;
 
-                        var result = new ServiceResult();
-                        result.IsFailed("UnAuthorized");
+                #region 仅能捕获授权异常-废弃
+                ////应用程序提供的对象，用于处理承载引发的事件，身份验证处理程序
+                //options.Events = new JwtBearerEvents
+                //{
+                //    OnChallenge = async context =>
+                //    {
+                //        //跳过默认的处理逻辑，返回以下数据模型
+                //        context.HandleResponse();
+                //        context.Response.ContentType = "application/json;charset=utf-8";
+                //        context.Response.StatusCode = StatusCodes.Status200OK;
 
-                        await context.Response.WriteAsync(result.ToJson());
-                    }
-                };
+                //        var result = new ServiceResult();
+                //        result.IsFailed("UnAuthorized");
+
+                //        await context.Response.WriteAsync(result.ToJson());
+                //    }
+                //}; 
+                #endregion
 
             });
             //认证授权
@@ -88,6 +106,12 @@ namespace Memoyu.Blog.HttpApi.Hosting
             }
             //路由
             app.UseRouting();
+            //异常处理中间件
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
+            //身份验证
+            app.UseAuthentication();
+            //认证授权
+            app.UseAuthorization();
             //路由映射
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

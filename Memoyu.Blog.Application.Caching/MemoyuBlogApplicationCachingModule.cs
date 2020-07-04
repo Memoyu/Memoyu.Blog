@@ -16,6 +16,8 @@
 ***************************************************************************/
 
 using Memoyu.Blog.Domain;
+using Memoyu.Blog.Domain.Configurations;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Caching;
 using Volo.Abp.Modularity;
 
@@ -26,7 +28,10 @@ namespace Memoyu.Blog.Application.Caching
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            base.ConfigureServices(context);
+            context.Services.AddStackExchangeRedisCache(options =>
+                {
+                    options.Configuration = AppSettings.Caching.RedisConnectionString;
+                });
         }
     }
 }
