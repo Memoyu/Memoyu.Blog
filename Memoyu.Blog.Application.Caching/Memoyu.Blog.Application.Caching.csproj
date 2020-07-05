@@ -13,8 +13,5 @@
     <ProjectReference Include="..\Memoyu.Blog.Domain\Memoyu.Blog.Domain.csproj" />
     <ProjectReference Include="..\Memoyu.Blog.ToolKits\Memoyu.Blog.ToolKits.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Blog\" />
-  </ItemGroup>
 
 </Project>

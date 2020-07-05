@@ -1,10 +1,12 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：BlogService
+*   命名空间 ：Memoyu.Blog.BackgroundJobs.Jobs.Impl
+*   文件名称 ：HangfireTestJob
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/6/28 19:28:20
+*   电子邮箱 ：mmy6076@outlook.com
+*   创建日期 ：2020-07-05 11:59:15
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -14,16 +16,15 @@
 ***************************************************************************/
 using System;
 using System.Threading.Tasks;
-using Memoyu.Blog.Application.Contracts.Blog;
-using Memoyu.Blog.ToolKits.Base;
 
-namespace Memoyu.Blog.Application.Blog.Impl
+namespace Memoyu.Blog.BackgroundJobs.Jobs.Impl
 {
-    public partial class BlogService
+    public class HangfireTestJob : IBackgroundJob
     {
-        public Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
+        public async Task ExecuteAsync()
         {
-            throw new Exception("这是个异常测试");
+            Console.WriteLine("定时任务测试");
+            await Task.CompletedTask;
         }
     }
 }

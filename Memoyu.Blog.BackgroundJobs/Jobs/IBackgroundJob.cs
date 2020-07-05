@@ -1,10 +1,12 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：BlogService
+*   命名空间 ：Memoyu.Blog.BackgroundJobs.Jobs
+*   文件名称 ：IBackgroundJob
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/6/28 19:28:20
+*   电子邮箱 ：mmy6076@outlook.com
+*   创建日期 ：2020-07-05 11:50:30
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -12,18 +14,18 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
-using System;
-using System.Threading.Tasks;
-using Memoyu.Blog.Application.Contracts.Blog;
-using Memoyu.Blog.ToolKits.Base;
 
-namespace Memoyu.Blog.Application.Blog.Impl
+using System.Threading.Tasks;
+using Volo.Abp.DependencyInjection;
+
+namespace Memoyu.Blog.BackgroundJobs.Jobs
 {
-    public partial class BlogService
+    public interface IBackgroundJob:ITransientDependency
     {
-        public Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
-        {
-            throw new Exception("这是个异常测试");
-        }
+        /// <summary>
+        /// 执行任务
+        /// </summary>
+        /// <returns></returns>
+        Task ExecuteAsync();
     }
 }

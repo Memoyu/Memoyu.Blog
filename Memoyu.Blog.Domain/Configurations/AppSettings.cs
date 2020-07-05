@@ -78,6 +78,14 @@ namespace Memoyu.Blog.Domain.Configurations
         {
             public static string RedisConnectionString => _configuration["Caching:RedisConnectionString"];
         }
+        /// <summary>
+        /// Hangfire
+        /// </summary>
+        public static class Hangfire
+        {
+            public static string Login => _configuration["Hangfire:Login"];
+            public static string Password => _configuration["Hangfire:Password"];
+        }
 
     }
 }

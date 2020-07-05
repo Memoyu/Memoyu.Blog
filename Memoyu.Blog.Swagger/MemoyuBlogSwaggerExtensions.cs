@@ -37,7 +37,7 @@ namespace Memoyu.Blog.Swagger
         /// <summary>
         /// Swagger描述信息
         /// </summary>
-        private static readonly string description = @"<b>Blog</b>：<a target=""_blank"" href=""博客地址"">博客地址</a> <br/><br/>  <b>GitHub</b>：<a target=""_blank"" href=""https://github.com/Memoyu"">https://github.com/Memoyu</a> <br/><br/> <b>Hangfire</b>：<a target=""_blank"" href=""/hangfire"">任务调度中心</a> <br/><br/> <code>Powered by .NET Core 3.1 on Linux</code>";
+        private static readonly string description = @"<b>Blog</b>：<a target=""_blank"" href=""博客地址"">博客地址</a> <br/><br/>  <b>GitHub</b>：<a target=""_blank"" href=""https://github.com/Memoyu"">https://github.com/Memoyu</a> <br/><br/> <b>Hangfire</b>：<a target=""_blank"" href=""https://localhost:44313/hangfire"">任务调度中心</a> <br/><br/> <code>Powered by .NET Core 3.1 on Linux</code>";
         /// <summary>
         /// Swagger分组信息
         /// </summary>

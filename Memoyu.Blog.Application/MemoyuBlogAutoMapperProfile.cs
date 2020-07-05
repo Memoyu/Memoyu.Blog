@@ -1,10 +1,12 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：BlogService
+*   命名空间 ：Memoyu.Blog.Application
+*   文件名称 ：MemoyuBlogAutoMapperProfile
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/6/28 19:28:20
+*   电子邮箱 ：mmy6076@outlook.com
+*   创建日期 ：2020-07-05 15:03:40
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -13,17 +15,17 @@
 *   ================================= 
 ***************************************************************************/
 using System;
-using System.Threading.Tasks;
-using Memoyu.Blog.Application.Contracts.Blog;
-using Memoyu.Blog.ToolKits.Base;
+using System.Collections.Generic;
+using System.Text;
+using AutoMapper;
 
-namespace Memoyu.Blog.Application.Blog.Impl
+namespace Memoyu.Blog.Application
 {
-    public partial class BlogService
+    class MemoyuBlogAutoMapperProfile : Profile
     {
-        public Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
+        public MemoyuBlogAutoMapperProfile()
         {
-            throw new Exception("这是个异常测试");
+            
         }
     }
 }

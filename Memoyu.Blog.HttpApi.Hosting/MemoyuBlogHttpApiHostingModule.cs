@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Linq;
+using Memoyu.Blog.BackgroundJobs;
 using Memoyu.Blog.Domain.Configurations;
 using Memoyu.Blog.EntityFrameworkCore;
 using Memoyu.Blog.HttpApi.Hosting.Filters;
 using Memoyu.Blog.HttpApi.Hosting.Middleware;
 using Memoyu.Blog.Swagger;
-using Memoyu.Blog.ToolKits.Base;
-using Memoyu.Blog.ToolKits.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,8 +29,9 @@ namespace Memoyu.Blog.HttpApi.Hosting
         typeof(AbpAutofacModule),
         typeof(MomeyuBlogHttpApiModule),
         typeof(MemoyuBlogSwaggerModule),
-        typeof(MemoyuBlogFrameworkCoreModule)
-        )]
+        typeof(MemoyuBlogFrameworkCoreModule),
+        typeof(MemoyuBlogBackgroundJobsModule)
+    )]
     public class MemoyuBlogHttpApiHostingModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -45,6 +45,19 @@ namespace Memoyu.Blog.HttpApi.Hosting
                 options.Filters.Remove(filterMetadata);
                 //添加自定义拦截器
                 options.Filters.Add<MemoyuExceptionFilter>();
+            });
+            // 跨域配置
+            context.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+            // 路由配置
+            context.Services.AddRouting(options =>
+            {
+                // 设置URL为小写
+                options.LowercaseUrls = true;
+                // 在生成的URL后面添加斜杠
+                options.AppendTrailingSlash = true;
             });
             context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
@@ -104,14 +117,26 @@ namespace Memoyu.Blog.HttpApi.Hosting
                 //生成异常页面
                 app.UseDeveloperExceptionPage();
             }
+            // 使用HSTS的中间件，该中间件添加了严格传输安全头
+            app.UseHsts();
+            // 转发将标头代理到当前请求，配合 Nginx 使用，获取用户真实IP
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
             //路由
             app.UseRouting();
+            // 跨域
+            app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             //异常处理中间件
             app.UseMiddleware<ExceptionHandlerMiddleware>();
             //身份验证
             app.UseAuthentication();
             //认证授权
             app.UseAuthorization();
+            // HTTP => HTTPS
+            app.UseHttpsRedirection();
             //路由映射
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

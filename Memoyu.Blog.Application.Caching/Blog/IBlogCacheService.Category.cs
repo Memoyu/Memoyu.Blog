@@ -1,10 +1,12 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：BlogService
+*   命名空间 ：Memoyu.Blog.Application.Caching.Blog
+*   文件名称 ：IBlogCacheService
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/6/28 19:28:20
+*   电子邮箱 ：mmy6076@outlook.com
+*   创建日期 ：2020-07-04 23:15:21
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -13,17 +15,12 @@
 *   ================================= 
 ***************************************************************************/
 using System;
-using System.Threading.Tasks;
-using Memoyu.Blog.Application.Contracts.Blog;
-using Memoyu.Blog.ToolKits.Base;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Memoyu.Blog.Application.Blog.Impl
+namespace Memoyu.Blog.Application.Caching.Blog
 {
-    public partial class BlogService
+    public partial interface IBlogCacheService
     {
-        public Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
-        {
-            throw new Exception("这是个异常测试");
-        }
     }
 }
