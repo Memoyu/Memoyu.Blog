@@ -1,0 +1,37 @@
+﻿<!-- Header.razor -->
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo">
+                <NavLink class="menu-item" href="/" Match="NavLinkMatch.All">
+                   MemoyuBlog
+                </NavLink>
+            </div>
+            <div class="menu navbar-right">
+                <NavLink class="menu-item" href="posts">文章</NavLink>
+                <NavLink class="menu-item" href="categories">分类</NavLink>
+                <NavLink class="menu-item" href="tags">标签</NavLink>
+                <NavLink class="menu-item apps" href="apps">其他</NavLink>
+                <input id="switch_default" type="checkbox" class="switch_default" />
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <NavLink class="menu-item" href="" Match="NavLinkMatch.All">Memoyu</NavLink>
+                    <NavLink>&nbsp;·&nbsp;Light</NavLink>
+                </div>
+                <div class="menu-toggle">&#9776; Menu</div>
+            </div>
+            <div class="menu">
+                <NavLink class="menu-item" href="posts">文章</NavLink>
+                <NavLink class="menu-item" href="categories">分类</NavLink>
+                <NavLink class="menu-item" href="tags">标签</NavLink>
+                <NavLink class="menu-item apps" href="apps">其他</NavLink>
+            </div>
+        </div>
+    </nav>
+</header>
