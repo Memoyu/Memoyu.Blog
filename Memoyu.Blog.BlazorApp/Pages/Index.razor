@@ -4,7 +4,7 @@
     <div class="container">
         <div class="intro">
             <div class="avatar">
-                <a href="javascript:;"><img src="https://static.meowv.com/images/avatar.jpg"></a>
+                <a href="javascript:;"><img src="./images/avatar.jpg"></a>
             </div>
             <div class="nickname">Memoyu</div>
             <div class="description">
@@ -14,7 +14,7 @@
                 </p>
             </div>
             <div class="links">
-                <NavLink class="link-item" title="Posts" href="posts">
+                @*<NavLink class="link-item" title="Posts" href="posts">
                     <i class="iconfont iconread"></i>
                 </NavLink>
                 <NavLink target="_blank" class="link-item" title="Notes" href="https://notes.meowv.com/">
@@ -25,15 +25,15 @@
                 </NavLink>
                 <NavLink class="link-item" title="Manage" href="/auth">
                     <i class="iconfont iconcode"></i>
-                </NavLink>
-                <NavLink target="_blank" class="link-item" title="Github" href="https://github.com/Meowv/">
+                </NavLink>*@
+                <NavLink target="_blank" class="link-item" title="Github" href="https://github.com/Memoyu/">
                     <i class="iconfont icongithub"></i>
                 </NavLink>
-                <NavLink class="link-item weixin" title="更多" @onmouseover="Hover" @onmouseout="Hover">
+                <NavLink class="link-item weixin" title="WeChat" @onmouseover="Hover" @onmouseout="Hover">
                     <i class="iconfont iconweixin"></i>
                 </NavLink>
                 <div class="qrcode @QrCodeCssClass">
-                    <img src="https://localhost:5001/images/wx_qrcode.png" />
+                    <img src="./images/wx_qrcode.png" />
                 </div>
             </div>
         </div>

@@ -15,12 +15,16 @@
 *   ================================= 
 ***************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
+using Memoyu.Blog.Application.Contracts;
+using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.ToolKits.Base;
 
 namespace Memoyu.Blog.Application.Caching.Blog
 {
     public partial interface IBlogCacheService
     {
+        Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync(PagingInput input,
+            Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory);
     }
 }

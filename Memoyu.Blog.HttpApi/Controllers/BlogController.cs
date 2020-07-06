@@ -16,6 +16,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Memoyu.Blog.Application.Blog;
+using Memoyu.Blog.Application.Contracts;
 using Memoyu.Blog.Application.Contracts.Blog;
 using Memoyu.Blog.Domain.Shared;
 using Memoyu.Blog.ToolKits.Base;
@@ -50,17 +51,17 @@ namespace Memoyu.Blog.HttpApi.Controllers
             return await _blogService.GetPostDetailAsync(url);
         }
 
-        ///// <summary>
-        ///// 分页查询文章列表
-        ///// </summary>
-        ///// <param name="input"></param>
-        ///// <returns></returns>
-        //[HttpGet]
-        //[Route("posts")]
-        //public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync([FromQuery] PagingInput input)
-        //{
-        //    return await _blogService.QueryPostsAsync(input);
-        //}
+        /// <summary>
+        /// 分页查询文章列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("posts")]
+        public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync([FromQuery] PagingInput input)
+        {
+            return await _blogService.QueryPostsAsync(input);
+        }
 
         ///// <summary>
         ///// 通过分类名称查询文章列表

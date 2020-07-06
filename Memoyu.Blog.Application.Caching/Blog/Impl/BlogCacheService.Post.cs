@@ -15,12 +15,27 @@
 *   ================================= 
 ***************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
+using Memoyu.Blog.Application.Contracts;
+using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.ToolKits.Base;
+using Memoyu.Blog.ToolKits.Extensions;
+using static Memoyu.Blog.Domain.Shared.MemoyuBlogConsts;
 
 namespace Memoyu.Blog.Application.Caching.Blog.Impl
 {
     public partial class BlogCacheService
     {
+        private const string KEY_QueryPosts = "Blog:Post:QueryPosts-{0}-{1}";
+        /// <summary>
+        /// 分页查询文章列表（缓存）
+        /// </summary>
+        /// <param name="input">分页入参</param>
+        /// <param name="factory">获取最新数据委托</param>
+        /// <returns></returns>
+        public Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync(PagingInput input, Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory)
+        {
+            return Cache.GetOrAddAsync(KEY_QueryPosts.FormatWith(input.Page, input.Limit), factory, CacheStrategy.ONE_DAY);
+        }
     }
 }
