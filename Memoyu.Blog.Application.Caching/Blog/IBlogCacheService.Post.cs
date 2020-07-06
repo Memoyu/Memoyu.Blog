@@ -24,7 +24,21 @@ namespace Memoyu.Blog.Application.Caching.Blog
 {
     public partial interface IBlogCacheService
     {
+        /// <summary>
+        /// 分页查询文章列表（缓存）
+        /// </summary>
+        /// <param name="input">分页入参</param>
+        /// <param name="factory">获取最新数据委托</param>
+        /// <returns></returns>
         Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync(PagingInput input,
             Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory);
+        /// <summary>
+        /// 文章详情（缓存）
+        /// </summary>
+        /// <param name="url">文章地址</param>
+        /// <param name="factory">获取文章详情委托</param>
+        /// <returns></returns>
+        Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url,
+            Func<Task<ServiceResult<PostDetailDto>>> factory);
     }
 }

@@ -17,6 +17,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Memoyu.Blog.Application.Contracts;
 using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.Domain.Shared;
 using Memoyu.Blog.ToolKits.Base;
 using Memoyu.Blog.ToolKits.Extensions;
 
@@ -31,7 +32,61 @@ namespace Memoyu.Blog.Application.Blog.Impl
         /// <returns></returns>
         public Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
         {
-            throw new Exception("这是个异常测试");
+            return _blogCacheService.GetPostDetailAsync(url, async () =>
+            {
+                var result = new ServiceResult<PostDetailDto>();
+                var post = await _postRepository.FindAsync(p => p.Url.Equals(url));//获取url对应的Post
+                if (post == null)
+                {
+                    result.IsFailed(MemoyuBlogConsts.ResponseText.WHAT_NOT_EXIST.FormatWith("URL", url));
+                    return result;
+                }
+
+                var category = await _categoryRepository.GetAsync(post.CategoryId);//获取Post所属Category
+                var tags = from postTags in await _postTagRepository.GetListAsync()//获取Post所属Tag
+                           join tag in _tagRepository on postTags.TagId equals tag.Id
+                           where postTags.PostId.Equals(post.Id)
+                           select new TagDto
+                           {
+                               DisplayName = tag.DisplayName,
+                               TagName = tag.TagName
+                           };
+                var previous = _postRepository.Where(p => DateTime.Compare(post.CreationTime, p.CreationTime) < 0)//t1早于t2
+                    .Take(1).FirstOrDefault();
+                var next = _postRepository.Where(p => DateTime.Compare(post.CreationTime, p.CreationTime) > 0)//t1晚于t2
+                    .OrderByDescending(p=>p.CreationTime).Take(1).FirstOrDefault();
+                var postDetail = new PostDetailDto
+                {
+                    Title = post.Title,
+                    Author = post.Author,
+                    Url = post.Url,
+                    Html = post.Html,
+                    Markdown = post.Markdown,
+                    CreationTime = post.CreationTime.TryToDateTime(),
+                    Category = new CategoryDto
+                    {
+                        CategoryName = category.CategoryName,
+                        DisplayName = category.DisplayName
+                    },
+                    Tags = tags,
+                    Previous = previous == null
+                        ? null
+                        : new PostForPagedDto
+                        {
+                            Title = previous.Title,
+                            Url = previous.Url
+                        },
+                    Next = next == null
+                        ? null
+                        : new PostForPagedDto
+                        {
+                            Title = next.Title,
+                            Url = next.Url
+                        }
+                };
+                result.IsSuccess(postDetail);
+                return result;
+            });
         }
         /// <summary>
         /// 分页查询文章列表

@@ -27,6 +27,7 @@ namespace Memoyu.Blog.Application.Caching.Blog.Impl
     public partial class BlogCacheService
     {
         private const string KEY_QueryPosts = "Blog:Post:QueryPosts-{0}-{1}";
+        private const string KEY_GetPostDetail = "Blog:Post:GetPostDetail-{0}";
         /// <summary>
         /// 分页查询文章列表（缓存）
         /// </summary>
@@ -36,6 +37,16 @@ namespace Memoyu.Blog.Application.Caching.Blog.Impl
         public Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync(PagingInput input, Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory)
         {
             return Cache.GetOrAddAsync(KEY_QueryPosts.FormatWith(input.Page, input.Limit), factory, CacheStrategy.ONE_DAY);
+        }
+        /// <summary>
+        /// 文章详情（缓存）
+        /// </summary>
+        /// <param name="url">文章地址</param>
+        /// <param name="factory">获取文章详情委托</param>
+        /// <returns></returns>
+        public Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url, Func<Task<ServiceResult<PostDetailDto>>> factory)
+        {
+            return Cache.GetOrAddAsync(KEY_GetPostDetail.FormatWith(url), factory, CacheStrategy.ONE_DAY);
         }
     }
 }
