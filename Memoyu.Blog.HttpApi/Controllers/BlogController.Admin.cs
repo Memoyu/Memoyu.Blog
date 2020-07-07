@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Memoyu.Blog.Application.Contracts;
 using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.Application.Contracts.Blog.Params;
 using Memoyu.Blog.Domain.Shared;
 using Memoyu.Blog.ToolKits.Base;
 using Microsoft.AspNetCore.Authorization;
@@ -26,33 +28,33 @@ namespace Memoyu.Blog.HttpApi.Controllers
             return await _blogService.GetPostForAdminAsync(id);
         }
 
-        ///// <summary>
-        ///// 分页查询文章列表
-        ///// </summary>
-        ///// <param name="input"></param>
-        ///// <returns></returns>
-        //[HttpGet]
-        //[Authorize]
-        //[Route("admin/posts")]
-        //[ApiExplorerSettings(GroupName = MemoyuBlogConsts.Grouping.GroupName_v2)]
-        //public async Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync([FromQuery] PagingInput input)
-        //{
-        //    return await _blogService.QueryPostsForAdminAsync(input);
-        //}
+        /// <summary>
+        /// 分页查询文章列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route("admin/posts")]
+        [ApiExplorerSettings(GroupName = MemoyuBlogConsts.Grouping.GroupName_v2)]
+        public async Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync([FromQuery] PagingInput input)
+        {
+            return await _blogService.QueryPostsForAdminAsync(input);
+        }
 
-        ///// <summary>
-        ///// 新增文章
-        ///// </summary>
-        ///// <param name="input"></param>
-        ///// <returns></returns>
-        //[HttpPost]
-        //[Authorize]
-        //[Route("post")]
-        //[ApiExplorerSettings(GroupName = MemoyuBlogConsts.Grouping.GroupName_v2)]
-        //public async Task<ServiceResult> InsertPostAsync([FromBody] EditPostInput input)
-        //{
-        //    return await _blogService.InsertPostAsync(input);
-        //}
+        /// <summary>
+        /// 新增文章
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        [Route("post")]
+        [ApiExplorerSettings(GroupName = MemoyuBlogConsts.Grouping.GroupName_v2)]
+        public async Task<ServiceResult> InsertPostAsync([FromBody] EditPostInput input)
+        {
+            return await _blogService.InsertPostAsync(input);
+        }
 
         ///// <summary>
         ///// 更新文章

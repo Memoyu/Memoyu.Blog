@@ -14,6 +14,21 @@
             展示名称
             </summary>
         </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.FriendLinkDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.FriendLinkDto.LinkUrl">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.Params.EditPostInput.Tags">
+            <summary>
+            标签列表
+            </summary>
+        </member>
         <member name="T:Memoyu.Blog.Application.Contracts.Blog.PostBriefDto">
             <summary>
             文章简要
@@ -37,6 +52,16 @@
         <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostBriefDto.CreationTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Application.Contracts.Blog.PostBriefForAdminDto">
+            <summary>
+            文章简要（管理员）
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostBriefForAdminDto.Id">
+            <summary>
+            主键
             </summary>
         </member>
         <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostDetailDto.Title">
@@ -139,6 +164,11 @@
             链接
             </summary>
         </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.QueryCategoryDto.Count">
+            <summary>
+            总数
+            </summary>
+        </member>
         <member name="T:Memoyu.Blog.Application.Contracts.Blog.QueryPostDto">
             <summary>
             文章查询模型
@@ -152,6 +182,21 @@
         <member name="P:Memoyu.Blog.Application.Contracts.Blog.QueryPostDto.Posts">
             <summary>
             Posts
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.Application.Contracts.Blog.QueryPostForAdminDto">
+            <summary>
+            文章查询模型（管理员）
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.QueryPostForAdminDto.Posts">
+            <summary>
+            覆盖父类Posts属性
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.QueryTagDto.Count">
+            <summary>
+            总数
             </summary>
         </member>
         <member name="P:Memoyu.Blog.Application.Contracts.Blog.TagDto.TagName">

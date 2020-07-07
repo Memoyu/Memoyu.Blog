@@ -1,10 +1,10 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：IBlogService
+*   文件名称 ：QueryPostForAdminDto
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/7/3 16:18:34
+*   创建日期 ：2020/7/7 14:53:12
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -14,18 +14,17 @@
 ***************************************************************************/
 
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Memoyu.Blog.Application.Contracts.Blog;
-using Memoyu.Blog.ToolKits.Base;
 
-namespace Memoyu.Blog.Application.Blog
+namespace Memoyu.Blog.Application.Contracts.Blog
 {
-    public partial interface IBlogService
+    /// <summary>
+    /// 文章查询模型（管理员）
+    /// </summary>
+    public class QueryPostForAdminDto : QueryPostDto
     {
         /// <summary>
-        /// 查询友链列表
+        /// 覆盖父类Posts属性
         /// </summary>
-        /// <returns></returns>
-        Task<ServiceResult<IEnumerable<FriendLinkDto>>> QueryFriendLinksAsync();
+        public new IEnumerable<PostBriefForAdminDto> Posts { get; set; }
     }
 }

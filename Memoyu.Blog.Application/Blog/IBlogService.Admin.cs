@@ -16,7 +16,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Memoyu.Blog.Application.Contracts;
 using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.Application.Contracts.Blog.Params;
 using Memoyu.Blog.ToolKits.Base;
 
 namespace Memoyu.Blog.Application.Blog
@@ -26,11 +28,30 @@ namespace Memoyu.Blog.Application.Blog
         #region Posts
 
         /// <summary>
-        /// 获取文章详情
+        /// 获取文章详情（管理员）
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync(int id);
+        /// <summary>
+        /// 分页查询文章列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync(PagingInput input);
+        /// <summary>
+        /// 新增文章
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ServiceResult> InsertPostAsync(EditPostInput input);
+        /// <summary>
+        /// 更新文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ServiceResult> UpdatePostAsync(int id,EditPostInput input);
 
         #endregion
     }

@@ -13,6 +13,7 @@
 *   ================================= 
 ***************************************************************************/
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Memoyu.Blog.Application.Contracts;
@@ -25,69 +26,6 @@ namespace Memoyu.Blog.Application.Blog.Impl
 {
     public partial class BlogService
     {
-        /// <summary>
-        /// 根据Url获取文章详情
-        /// </summary>
-        /// <param name="url">Url</param>
-        /// <returns></returns>
-        public Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
-        {
-            return _blogCacheService.GetPostDetailAsync(url, async () =>
-            {
-                var result = new ServiceResult<PostDetailDto>();
-                var post = await _postRepository.FindAsync(p => p.Url.Equals(url));//获取url对应的Post
-                if (post == null)
-                {
-                    result.IsFailed(MemoyuBlogConsts.ResponseText.WHAT_NOT_EXIST.FormatWith("URL", url));
-                    return result;
-                }
-
-                var category = await _categoryRepository.GetAsync(post.CategoryId);//获取Post所属Category
-                var tags = from postTags in await _postTagRepository.GetListAsync()//获取Post所属Tag
-                           join tag in _tagRepository on postTags.TagId equals tag.Id
-                           where postTags.PostId.Equals(post.Id)
-                           select new TagDto
-                           {
-                               DisplayName = tag.DisplayName,
-                               TagName = tag.TagName
-                           };
-                var previous = _postRepository.Where(p => DateTime.Compare(post.CreationTime, p.CreationTime) < 0)//t1早于t2
-                    .Take(1).FirstOrDefault();
-                var next = _postRepository.Where(p => DateTime.Compare(post.CreationTime, p.CreationTime) > 0)//t1晚于t2
-                    .OrderByDescending(p=>p.CreationTime).Take(1).FirstOrDefault();
-                var postDetail = new PostDetailDto
-                {
-                    Title = post.Title,
-                    Author = post.Author,
-                    Url = post.Url,
-                    Html = post.Html,
-                    Markdown = post.Markdown,
-                    CreationTime = post.CreationTime.TryToDateTime(),
-                    Category = new CategoryDto
-                    {
-                        CategoryName = category.CategoryName,
-                        DisplayName = category.DisplayName
-                    },
-                    Tags = tags,
-                    Previous = previous == null
-                        ? null
-                        : new PostForPagedDto
-                        {
-                            Title = previous.Title,
-                            Url = previous.Url
-                        },
-                    Next = next == null
-                        ? null
-                        : new PostForPagedDto
-                        {
-                            Title = next.Title,
-                            Url = next.Url
-                        }
-                };
-                result.IsSuccess(postDetail);
-                return result;
-            });
-        }
         /// <summary>
         /// 分页查询文章列表
         /// </summary>
@@ -117,6 +55,137 @@ namespace Memoyu.Blog.Application.Blog.Impl
                     }).ToList();
 
                 result.IsSuccess(new PagedList<QueryPostDto>(count.TryToInt(), list));
+                return result;
+            });
+        }
+        /// <summary>
+        /// 通过分类名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name)
+        {
+            return await _blogCacheService.QueryPostsByCategoryAsync(name, async () =>
+            {
+                var result = new ServiceResult<IEnumerable<QueryPostDto>>();
+                var posts =
+                    (from post in await _postRepository.GetListAsync()
+                     join category in await _categoryRepository.GetListAsync()
+                         on post.CategoryId equals category.Id
+                     where category.CategoryName.Equals(name)
+                     orderby post.CreationTime descending
+                     select new PostBriefDto
+                     {
+                         Title = post.Title,
+                         Url = post.Url,
+                         Year = post.CreationTime.Year,
+                         CreationTime = post.CreationTime.TryToDateTime()
+                     })
+                    .GroupBy(p => p.Year)
+                    .Select(p => new QueryPostDto
+                    {
+                        Year = p.Key,
+                        Posts = p.ToList()
+                    });
+                result.IsSuccess(posts);
+                return result;
+            });
+        }
+        /// <summary>
+        /// 通过标签名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name)
+        {
+            return await _blogCacheService.QueryPostsByTagAsync(name, async () =>
+            {
+                var result = new ServiceResult<IEnumerable<QueryPostDto>>();
+                var posts =
+                    (from postTag in await _postTagRepository.GetListAsync()
+                     join tag in await _tagRepository.GetListAsync()
+                     on postTag.TagId equals tag.Id
+                     join post in await _postRepository.GetListAsync() 
+                     on postTag.PostId equals post.Id
+                     where tag.TagName.Equals(name)
+                     orderby post.CreationTime descending
+                     select new PostBriefDto
+                     {
+                         Title = post.Title,
+                         Url = post.Url,
+                         Year = post.CreationTime.Year,
+                         CreationTime = post.CreationTime.TryToDateTime()
+                     })
+                    .GroupBy(p => p.Year)
+                    .Select(p => new QueryPostDto
+                    {
+                        Year = p.Key,
+                        Posts = p.ToList()
+                    });
+                result.IsSuccess(posts);
+                return result;
+            });
+        }
+        /// <summary>
+        /// 根据Url获取文章详情
+        /// </summary>
+        /// <param name="url">Url</param>
+        /// <returns></returns>
+        public Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
+        {
+            return _blogCacheService.GetPostDetailAsync(url, async () =>
+            {
+                var result = new ServiceResult<PostDetailDto>();
+                var post = await _postRepository.FindAsync(p => p.Url.Equals(url));//获取url对应的Post
+                if (post == null)
+                {
+                    result.IsFailed(MemoyuBlogConsts.ResponseText.WHAT_NOT_EXIST.FormatWith("URL", url));
+                    return result;
+                }
+
+                var category = await _categoryRepository.GetAsync(post.CategoryId);//获取Post所属Category
+                var tags = from postTags in await _postTagRepository.GetListAsync()//获取Post所属Tag
+                           join tag in _tagRepository on postTags.TagId equals tag.Id
+                           where postTags.PostId.Equals(post.Id)
+                           select new TagDto
+                           {
+                               DisplayName = tag.DisplayName,
+                               TagName = tag.TagName
+                           };
+                var previous = _postRepository.Where(p => DateTime.Compare(post.CreationTime, p.CreationTime) < 0)//t1早于t2
+                    .Take(1).FirstOrDefault();
+                var next = _postRepository.Where(p => DateTime.Compare(post.CreationTime, p.CreationTime) > 0)//t1晚于t2
+                    .OrderByDescending(p => p.CreationTime).Take(1).FirstOrDefault();
+                var postDetail = new PostDetailDto//获得文章详情信息
+                {
+                    Title = post.Title,
+                    Author = post.Author,
+                    Url = post.Url,
+                    Html = post.Html,
+                    Markdown = post.Markdown,
+                    CreationTime = post.CreationTime.TryToDateTime(),
+                    Category = new CategoryDto
+                    {
+                        CategoryName = category.CategoryName,
+                        DisplayName = category.DisplayName
+                    },
+                    Tags = tags,
+                    Previous = previous == null
+                        ? null
+                        : new PostForPagedDto
+                        {
+                            Title = previous.Title,
+                            Url = previous.Url
+                        },
+                    Next = next == null
+                        ? null
+                        : new PostForPagedDto
+                        {
+                            Title = next.Title,
+                            Url = next.Url
+                        }
+                };
+                result.IsSuccess(postDetail);
                 return result;
             });
         }

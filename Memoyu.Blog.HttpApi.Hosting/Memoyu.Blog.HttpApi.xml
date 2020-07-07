@@ -31,6 +31,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryPostsForAdminAsync(Memoyu.Blog.Application.Contracts.PagingInput)">
+            <summary>
+            分页查询文章列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.InsertPostAsync(Memoyu.Blog.Application.Contracts.Blog.Params.EditPostInput)">
+            <summary>
+            新增文章
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.GetPostDetailAsync(System.String)">
             <summary>
             根据URL获取文章详情
@@ -43,6 +57,52 @@
             分页查询文章列表
             </summary>
             <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryPostsByCategoryAsync(System.String)">
+            <summary>
+            通过分类名称查询文章列表
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryPostsByTagAsync(System.String)">
+            <summary>
+            通过标签名称查询文章列表
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.GetCategoryAsync(System.String)">
+            <summary>
+            获取分类名称
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryCategoriesAsync">
+            <summary>
+            查询分类列表（已被引用的分类以及引用数）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.GetTagAsync(System.String)">
+            <summary>
+            获取标签名称
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryTagsAsync">
+            <summary>
+            查询标签列表（已被引用的标签以及引用数）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryFriendLinksAsync">
+            <summary>
+            查询友链列表
+            </summary>
             <returns></returns>
         </member>
         <member name="T:Memoyu.Blog.HttpApi.MomeyuBlogHttpApiModule">

@@ -16,11 +16,23 @@
 ***************************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
+using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.ToolKits.Base;
+using static Memoyu.Blog.Domain.Shared.MemoyuBlogConsts;
 
 namespace Memoyu.Blog.Application.Caching.Blog.Impl
 {
     public partial class BlogCacheService
     {
+        public const string KEY_QueryFriendLinks = "Blog:FriendLink:QueryFriendLinks";
+        /// <summary>
+        /// 查询友链列表（缓存）
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<FriendLinkDto>>> QueryFriendLinksAsync(Func<Task<ServiceResult<IEnumerable<FriendLinkDto>>>>factory)
+        {
+            return await Cache.GetOrAddAsync(KEY_QueryFriendLinks, factory, CacheStrategy.ONE_DAY);
+        }
     }
 }

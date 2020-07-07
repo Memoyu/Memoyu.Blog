@@ -15,6 +15,7 @@
 *   ================================= 
 ***************************************************************************/
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Memoyu.Blog.Application.Contracts;
 using Memoyu.Blog.Application.Contracts.Blog;
@@ -28,6 +29,8 @@ namespace Memoyu.Blog.Application.Caching.Blog.Impl
     {
         private const string KEY_QueryPosts = "Blog:Post:QueryPosts-{0}-{1}";
         private const string KEY_GetPostDetail = "Blog:Post:GetPostDetail-{0}";
+        private const string KEY_GetPostsByCategory = "Blog:Post:GetPostsByCategory-{0}";
+        private const string KEY_GetPostsByTag = "Blog:Post:GetPostsByTag-{0}";
         /// <summary>
         /// 分页查询文章列表（缓存）
         /// </summary>
@@ -38,6 +41,27 @@ namespace Memoyu.Blog.Application.Caching.Blog.Impl
         {
             return Cache.GetOrAddAsync(KEY_QueryPosts.FormatWith(input.Page, input.Limit), factory, CacheStrategy.ONE_DAY);
         }
+        /// <summary>
+        /// 通过分类名称获取文章列表（缓存）
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name, Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory)
+        {
+            return await Cache.GetOrAddAsync(KEY_GetPostsByCategory.FormatWith(name), factory, CacheStrategy.ONE_DAY);
+        }
+        /// <summary>
+        /// 通过标签名称获取文章列表（缓存）
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name, Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory)
+        {
+            return await Cache.GetOrAddAsync(KEY_GetPostsByTag.FormatWith(name), factory, CacheStrategy.ONE_DAY);
+        }
+
         /// <summary>
         /// 文章详情（缓存）
         /// </summary>

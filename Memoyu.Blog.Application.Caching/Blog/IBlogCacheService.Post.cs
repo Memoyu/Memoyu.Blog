@@ -15,6 +15,7 @@
 *   ================================= 
 ***************************************************************************/
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Memoyu.Blog.Application.Contracts;
 using Memoyu.Blog.Application.Contracts.Blog;
@@ -33,6 +34,20 @@ namespace Memoyu.Blog.Application.Caching.Blog
         Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync(PagingInput input,
             Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory);
         /// <summary>
+        /// 通过分类名称获取文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name , Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory);
+        /// <summary>
+        /// 通过标签名称获取文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name, Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory);
+        /// <summary>
         /// 文章详情（缓存）
         /// </summary>
         /// <param name="url">文章地址</param>
@@ -40,5 +55,6 @@ namespace Memoyu.Blog.Application.Caching.Blog
         /// <returns></returns>
         Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url,
             Func<Task<ServiceResult<PostDetailDto>>> factory);
+
     }
 }

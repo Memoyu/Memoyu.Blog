@@ -13,8 +13,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Memoyu.Blog.Domain.Shared\Memoyu.Blog.Domain.Shared.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Blog\Params\" />
-  </ItemGroup>
 </Project>

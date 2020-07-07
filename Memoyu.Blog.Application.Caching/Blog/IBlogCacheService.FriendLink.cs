@@ -17,10 +17,18 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.ToolKits.Base;
 
 namespace Memoyu.Blog.Application.Caching.Blog
 {
     public partial interface IBlogCacheService
     {
+        /// <summary>
+        /// 查询友链列表（缓存）
+        /// </summary>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<FriendLinkDto>>> QueryFriendLinksAsync(Func<Task<ServiceResult<IEnumerable<FriendLinkDto>>>> factory);
     }
 }

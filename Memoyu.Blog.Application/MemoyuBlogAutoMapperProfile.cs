@@ -14,10 +14,11 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using AutoMapper;
+using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.Application.Contracts.Blog.Params;
+using Memoyu.Blog.Domain.Blog;
 
 namespace Memoyu.Blog.Application
 {
@@ -25,7 +26,8 @@ namespace Memoyu.Blog.Application
     {
         public MemoyuBlogAutoMapperProfile()
         {
-            
+            CreateMap<FriendLink, FriendLinkDto>();
+            CreateMap<EditPostInput, Post>().ForMember(p => p.Id, opt => opt.Ignore());//EditPostInput映射到Post，忽略Id
         }
     }
 }

@@ -12,13 +12,31 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
-using System;
+
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
+using Memoyu.Blog.Application.Contracts.Blog;
+using Memoyu.Blog.Domain.Blog;
+using Memoyu.Blog.ToolKits.Base;
 
 namespace Memoyu.Blog.Application.Blog.Impl
 {
     public partial class BlogService
     {
+        /// <summary>
+        /// 查询友链列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<FriendLinkDto>>> QueryFriendLinksAsync()
+        {
+            return await _blogCacheService.QueryFriendLinksAsync(async () =>
+            {
+                var result = new ServiceResult<IEnumerable<FriendLinkDto>>();
+                var list = await _friendLinksRepository.GetListAsync();
+                var friendLinks = ObjectMapper.Map<IEnumerable<FriendLink>, IEnumerable<FriendLinkDto>>(list);
+                result.IsSuccess(friendLinks);
+                return result;
+            });
+        }
     }
 }
