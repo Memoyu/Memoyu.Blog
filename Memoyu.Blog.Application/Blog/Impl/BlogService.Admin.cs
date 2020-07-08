@@ -123,7 +123,7 @@ namespace Memoyu.Blog.Application.Blog.Impl
 
             await _postRepository.UpdateAsync(post);
             var tags = await _tagRepository.GetListAsync();
-            var oldPostTags = from postTag in await _postTagRepository.GetListAsync()
+            var oldPostTags = from postTag in await _postTagRepository.GetListAsync()//查出文章中现有的标签数据
                               join tag in await _tagRepository.GetListAsync()
                                   on postTag.TagId equals tag.Id
                               where postTag.PostId.Equals(post.Id)
@@ -132,15 +132,55 @@ namespace Memoyu.Blog.Application.Blog.Impl
                                   postTag.Id,
                                   tag.TagName
                               };
-            var removeTag =//All 当全部元素符合条件才返回True
-                oldPostTags.Where(
-                    item => input.Tags.All(it => it != item.TagName) &&
-                         tags.Any(t => t.TagName == item.TagName))
+            var removeTag = oldPostTags.Where(//获取需要移除的
+                    item => input.Tags.All(it => it != item.TagName) &&//All 当全部元素符合条件才返回True
+                    tags.Any(t => t.TagName == item.TagName))
                     .Select(item => item.Id);
+            await _postTagRepository.DeleteAsync(pt => removeTag.Contains(pt.Id));//删除文章中多余的Tag
 
+            var newTags = input.Tags//获取传入input中新的tags
+                .Where(it => !tags.Any(t => t.TagName.Equals(it)))
+                .Select(it => new Tag
+                {
+                    TagName = it,
+                    DisplayName = it
+                });
+            await _tagRepository.BulkInsertAsync(newTags);
+
+            var newPostTags = input.Tags//获取需要新增的PostTag
+                .Where(it => !oldPostTags.Any(ot => ot.TagName.Equals(it)))
+                .Select(it =>
+                new PostTag
+                {
+                    PostId = id,
+                    TagId = _tagRepository.FirstOrDefault(t => t.TagName.Equals(it)).Id
+                });
+            await _postTagRepository.BulkInsertAsync(newPostTags);
+            result.IsSuccess(ResponseText.UPDATE_SUCCESS);
             return result;
         }
+        /// <summary>
+        /// 删除文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> DeletePostAsync(int id)
+        {
+            var result = new ServiceResult();
 
+            var post = await _postRepository.GetAsync(id);
+            if (null == post)
+            {
+                result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("Id", id));
+                return result;
+            }
+
+            await _postRepository.DeleteAsync(id);
+            await _postTagRepository.DeleteAsync(x => x.PostId == id);
+
+            result.IsSuccess(ResponseText.DELETE_SUCCESS);
+            return result;
+        }
         #endregion
     }
 }
