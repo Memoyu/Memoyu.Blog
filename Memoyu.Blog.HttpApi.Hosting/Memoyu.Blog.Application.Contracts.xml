@@ -24,11 +24,6 @@
             链接
             </summary>
         </member>
-        <member name="P:Memoyu.Blog.Application.Contracts.Blog.Params.EditPostInput.Tags">
-            <summary>
-            标签列表
-            </summary>
-        </member>
         <member name="T:Memoyu.Blog.Application.Contracts.Blog.PostBriefDto">
             <summary>
             文章简要
@@ -169,6 +164,16 @@
             总数
             </summary>
         </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.QueryCategoryForAdminDto.Id">
+            <summary>
+            分类Id
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.QueryFriendLinkForAdminDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
         <member name="T:Memoyu.Blog.Application.Contracts.Blog.QueryPostDto">
             <summary>
             文章查询模型
@@ -197,6 +202,11 @@
         <member name="P:Memoyu.Blog.Application.Contracts.Blog.QueryTagDto.Count">
             <summary>
             总数
+            </summary>
+        </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.QueryTagForAdminDto.Id">
+            <summary>
+            主键
             </summary>
         </member>
         <member name="P:Memoyu.Blog.Application.Contracts.Blog.TagDto.TagName">

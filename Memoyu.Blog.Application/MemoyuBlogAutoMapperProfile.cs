@@ -27,7 +27,13 @@ namespace Memoyu.Blog.Application
         public MemoyuBlogAutoMapperProfile()
         {
             CreateMap<FriendLink, FriendLinkDto>();
+            CreateMap<FriendLink, QueryFriendLinkForAdminDto>();
             CreateMap<EditPostInput, Post>().ForMember(p => p.Id, opt => opt.Ignore());//EditPostInput映射到Post，忽略Id
+            CreateMap<EditCategoryInput, Category>().ForMember(p => p.Id, opt => opt.Ignore());
+            CreateMap<EditTagInput, Tag>().ForMember(p => p.Id, opt => opt.Ignore());
+            CreateMap<EditFriendLinkInput, FriendLink>().ForMember(p => p.Id, opt => opt.Ignore());
+            CreateMap<Post, PostForAdminDto>().ForMember(x => x.Tags, opt => opt.Ignore());
+
         }
     }
 }
