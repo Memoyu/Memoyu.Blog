@@ -21,6 +21,7 @@ using Memoyu.Blog.Application.Contracts.Blog;
 using Memoyu.Blog.Domain.Shared;
 using Memoyu.Blog.ToolKits.Base;
 using Memoyu.Blog.ToolKits.Extensions;
+using Memoyu.Blog.ToolKits.Tools;
 
 namespace Memoyu.Blog.Application.Blog.Impl
 {
@@ -43,6 +44,7 @@ namespace Memoyu.Blog.Application.Blog.Impl
                     .Select(p => new PostBriefDto//排序后，转成列表摘要，
                     {
                         Title = p.Title,
+                        Brief = HtmlHelper.GetContentSummary(p.Html,100,true),
                         Url = p.Url,
                         Year = p.CreationTime.Year,
                         CreationTime = p.CreationTime.TryToDateTime()

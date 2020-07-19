@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -10,13 +7,11 @@ namespace Memoyu.Blog.BlazorApp.Commons
     public class Common
     {
         private readonly IJSRuntime _jsRuntime;
-
         private readonly NavigationManager _navigationManager;
 
         public Common(IJSRuntime jsRuntime, NavigationManager navigationManager)
         {
             _jsRuntime = jsRuntime;
-
             _navigationManager = navigationManager;
         }
 
@@ -44,6 +39,23 @@ namespace Memoyu.Blog.BlazorApp.Commons
         }
 
         /// <summary>
+        /// 设置标题
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public async Task SetTitleAsync(string title = null)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                await InvokeAsync("window.func.setTitle", $"Memoyu");
+            }
+            else
+            {
+                await InvokeAsync("window.func.setTitle", $"{title} - Memoyu");
+            }
+        }
+
+        /// <summary>
         /// 设置localStorage
         /// </summary>
         /// <param name="name"></param>
@@ -63,5 +75,6 @@ namespace Memoyu.Blog.BlazorApp.Commons
         {
             return await InvokeAsync<string>("window.func.getStorage", name);
         }
+
     }
 }

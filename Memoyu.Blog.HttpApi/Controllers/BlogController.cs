@@ -27,7 +27,7 @@ using Volo.Abp.AspNetCore.Mvc;
 namespace Memoyu.Blog.HttpApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiExplorerSettings(GroupName = MemoyuBlogConsts.Grouping.GroupName_v1)]
     public partial class BlogController : AbpController
     {

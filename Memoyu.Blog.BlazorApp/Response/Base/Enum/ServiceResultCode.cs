@@ -1,10 +1,10 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：PagingInput
+*   文件名称 ：ServiceResultCode
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/7/6 10:25:03
+*   创建日期 ：2020/6/24 17:34:15
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -13,26 +13,21 @@
 *   ================================= 
 ***************************************************************************/
 
-using System.ComponentModel.DataAnnotations;
-
-namespace Memoyu.Blog.Application.Contracts
+namespace Memoyu.Blog.BlazorApp.Response.Base.Enum
 {
     /// <summary>
-    /// 分页请求入参
+    /// 服务层响应枚举码
     /// </summary>
-    public class PagingInput
+    public enum ServiceResultCode
     {
+        /// <summary>
+        /// 成功
+        /// </summary>
+        Succeed = 0,
 
         /// <summary>
-        /// 页码
+        /// 失败
         /// </summary>
-        [Range(1, int.MaxValue)]
-        public int Page { get; set; } = 1;
-
-        /// <summary>
-        /// 限制条数
-        /// </summary>
-        [Range(5, 30)]
-        public int Limit { get; set; } = 5;
+        Failed = 1,
     }
 }

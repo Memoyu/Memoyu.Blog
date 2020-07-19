@@ -1,0 +1,14 @@
+﻿@page "/posts"
+@*@page "/posts/page/{page:int}"
+@page "/posts/{page:int}"*@
+
+@if (posts == null)
+{
+    <Loading />
+}
+else
+{
+    <div class="post-wrap archive">
+        <Pagination DefaultCurrent="6" Total="500" />
+    </div>
+}

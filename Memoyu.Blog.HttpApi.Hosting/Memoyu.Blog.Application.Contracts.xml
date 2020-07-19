@@ -34,6 +34,11 @@
             标题
             </summary>
         </member>
+        <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostBriefDto.Brief">
+            <summary>
+            摘要
+            </summary>
+        </member>
         <member name="P:Memoyu.Blog.Application.Contracts.Blog.PostBriefDto.Url">
             <summary>
             链接

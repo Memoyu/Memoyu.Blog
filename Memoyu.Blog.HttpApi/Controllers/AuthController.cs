@@ -25,7 +25,7 @@ namespace Memoyu.Blog.HttpApi.Controllers
 {
     [ApiController]
     [AllowAnonymous]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiExplorerSettings(GroupName = Grouping.GroupName_v4)]
     public class AuthController:AbpController
     {

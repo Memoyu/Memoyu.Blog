@@ -1,10 +1,10 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：PostBriefDto
+*   文件名称 ：PostDto
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/7/6 9:53:07
+*   创建日期 ：2020/7/3 17:42:42
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -12,25 +12,22 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Memoyu.Blog.Application.Contracts.Blog
+using System;
+
+namespace Memoyu.Blog.BlazorApp.Response.Blog
 {
-    /// <summary>
-    /// 文章简要
-    /// </summary>
-    public class PostBriefDto
+    public class PostDto
     {
         /// <summary>
         /// 标题
         /// </summary>
         public string Title { get; set; }
+
         /// <summary>
-        /// 摘要
+        /// 作者
         /// </summary>
-        public string Brief { get; set; }
+        public string Author { get; set; }
 
         /// <summary>
         /// 链接
@@ -38,13 +35,23 @@ namespace Memoyu.Blog.Application.Contracts.Blog
         public string Url { get; set; }
 
         /// <summary>
-        /// 年份
+        /// HTML
         /// </summary>
-        public int Year { get; set; }
+        public string Html { get; set; }
+
+        /// <summary>
+        /// Markdown
+        /// </summary>
+        public string Markdown { get; set; }
+
+        /// <summary>
+        /// 分类Id
+        /// </summary>
+        public int CategoryId { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        public string CreationTime { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }

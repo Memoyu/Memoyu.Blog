@@ -1,10 +1,10 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：PagingInput
+*   文件名称 ：QueryPostDto
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/7/6 10:25:03
+*   创建日期 ：2020/7/6 9:57:54
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -13,26 +13,23 @@
 *   ================================= 
 ***************************************************************************/
 
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
-namespace Memoyu.Blog.Application.Contracts
+namespace Memoyu.Blog.BlazorApp.Response.Blog
 {
     /// <summary>
-    /// 分页请求入参
+    /// 文章查询模型
     /// </summary>
-    public class PagingInput
+    public class QueryPostDto
     {
+        /// <summary>
+        /// 年份
+        /// </summary>
+        public int Year { get; set; }
 
         /// <summary>
-        /// 页码
+        /// Posts
         /// </summary>
-        [Range(1, int.MaxValue)]
-        public int Page { get; set; } = 1;
-
-        /// <summary>
-        /// 限制条数
-        /// </summary>
-        [Range(5, 30)]
-        public int Limit { get; set; } = 5;
+        public IEnumerable<PostBriefDto> Posts { get; set; }
     }
 }

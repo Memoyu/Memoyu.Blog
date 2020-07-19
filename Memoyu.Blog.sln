@@ -44,7 +44,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memoyu.Blog.Swagger", "Memo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memoyu.Blog.ToolKits", "Memoyu.Blog.ToolKits\Memoyu.Blog.ToolKits.csproj", "{EDC749D2-159A-46AE-86FF-A8927DDF2956}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memoyu.Blog.BlazorApp", "Memoyu.Blog.BlazorApp\Memoyu.Blog.BlazorApp.csproj", "{71966023-8827-43F2-BC33-7F37422AC18C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memoyu.Blog.BlazorApp", "Memoyu.Blog.BlazorApp\Memoyu.Blog.BlazorApp.csproj", "{9704B77A-BFAF-48E5-BD74-AF010DDEBACE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,10 +100,10 @@ Global
 		{EDC749D2-159A-46AE-86FF-A8927DDF2956}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDC749D2-159A-46AE-86FF-A8927DDF2956}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDC749D2-159A-46AE-86FF-A8927DDF2956}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71966023-8827-43F2-BC33-7F37422AC18C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71966023-8827-43F2-BC33-7F37422AC18C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71966023-8827-43F2-BC33-7F37422AC18C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71966023-8827-43F2-BC33-7F37422AC18C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9704B77A-BFAF-48E5-BD74-AF010DDEBACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9704B77A-BFAF-48E5-BD74-AF010DDEBACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9704B77A-BFAF-48E5-BD74-AF010DDEBACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9704B77A-BFAF-48E5-BD74-AF010DDEBACE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,7 +111,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{068855E8-9240-4F1A-910B-CF825794513B} = {A659EDAE-8300-428D-9182-828CB7C1D060}
 		{0372FA84-C517-4EB3-9A9F-B9ACAC0CA5E0} = {0566BD88-37BA-4AB0-9F73-AF50B6F3126E}
-		{71966023-8827-43F2-BC33-7F37422AC18C} = {D9F2B322-C5CC-454A-895B-61ABE3DCE625}
+		{9704B77A-BFAF-48E5-BD74-AF010DDEBACE} = {D9F2B322-C5CC-454A-895B-61ABE3DCE625}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
