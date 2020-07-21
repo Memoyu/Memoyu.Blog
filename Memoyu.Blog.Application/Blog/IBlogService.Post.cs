@@ -34,15 +34,15 @@ namespace Memoyu.Blog.Application.Blog
         /// <summary>
         /// 通过分类名称获取文章列表
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name);
+        Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsByCategoryAsync(PagingInputById input);
         /// <summary>
         /// 通过标签名称获取文章列表
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name);
+        Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsByTagAsync(PagingInputById input);
         /// <summary>
         /// 根据URL获取文章详情
         /// </summary>

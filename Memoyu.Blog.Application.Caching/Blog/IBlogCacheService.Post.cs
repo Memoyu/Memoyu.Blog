@@ -34,19 +34,19 @@ namespace Memoyu.Blog.Application.Caching.Blog
         Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync(PagingInput input,
             Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory);
         /// <summary>
-        /// 通过分类名称获取文章列表
+        /// 通过分类Id获取文章列表
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="input"></param>
         /// <param name="factory"></param>
         /// <returns></returns>
-        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name , Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory);
+        Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsByCategoryAsync(PagingInputById input, Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory);
         /// <summary>
-        /// 通过标签名称获取文章列表
+        /// 通过标签Id获取文章列表
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="input"></param>
         /// <param name="factory"></param>
         /// <returns></returns>
-        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name, Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory);
+        Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsByTagAsync(PagingInputById input, Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory);
         /// <summary>
         /// 文章详情（缓存）
         /// </summary>

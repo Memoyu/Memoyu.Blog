@@ -65,27 +65,27 @@ namespace Memoyu.Blog.HttpApi.Controllers
         }
 
         /// <summary>
-        /// 通过分类名称查询文章列表
+        /// 通过分类Id查询文章列表
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("posts/category")]
-        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync([Required] string name)
+        public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsByCategoryAsync([FromQuery] PagingInputById input)
         {
-            return await _blogService.QueryPostsByCategoryAsync(name);
+            return await _blogService.QueryPostsByCategoryAsync(input);
         }
 
         /// <summary>
-        /// 通过标签名称查询文章列表
+        /// 通过标签Id查询文章列表
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("posts/tag")]
-        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync([Required] string name)
+        public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsByTagAsync([FromQuery] PagingInputById input)
         {
-            return await _blogService.QueryPostsByTagAsync(name);
+            return await _blogService.QueryPostsByTagAsync(input);
         }
 
         #endregion Posts

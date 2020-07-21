@@ -41,10 +41,12 @@ namespace Memoyu.Blog.Application.Blog.Impl
                            group tag by new
                            {
                                tag.TagName,
-                               tag.DisplayName
+                               tag.DisplayName,
+                               tag.Id
                            } into g
                            select new QueryTagDto
                            {
+                               Id = g.Key.Id,
                                TagName = g.Key.TagName,
                                DisplayName = g.Key.DisplayName,
                                Count = g.Count()

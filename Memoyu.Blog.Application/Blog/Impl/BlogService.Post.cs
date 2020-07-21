@@ -44,7 +44,7 @@ namespace Memoyu.Blog.Application.Blog.Impl
                     .Select(p => new PostBriefDto//排序后，转成列表摘要，
                     {
                         Title = p.Title,
-                        Brief = HtmlHelper.GetContentSummary(p.Html,100,true),
+                        Brief = HtmlHelper.GetContentSummary(p.Html, 100, true),
                         Url = p.Url,
                         Year = p.CreationTime.Year,
                         CreationTime = p.CreationTime.TryToDateTime()
@@ -61,70 +61,80 @@ namespace Memoyu.Blog.Application.Blog.Impl
             });
         }
         /// <summary>
-        /// 通过分类名称查询文章列表
+        /// 通过分类Id查询文章列表
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name)
+        public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsByCategoryAsync(PagingInputById input)
         {
-            return await _blogCacheService.QueryPostsByCategoryAsync(name, async () =>
+            return await _blogCacheService.QueryPostsByCategoryAsync(input, async () =>
             {
-                var result = new ServiceResult<IEnumerable<QueryPostDto>>();
-                var posts =
+                var result = new ServiceResult<PagedList<QueryPostDto>>();
+                var temp =
                     (from post in await _postRepository.GetListAsync()
                      join category in await _categoryRepository.GetListAsync()
                          on post.CategoryId equals category.Id
-                     where category.CategoryName.Equals(name)
+                     where category.Id.Equals(input.Id)
                      orderby post.CreationTime descending
                      select new PostBriefDto
                      {
                          Title = post.Title,
+                         Brief = HtmlHelper.GetContentSummary(post.Html, 100, true),
                          Url = post.Url,
                          Year = post.CreationTime.Year,
                          CreationTime = post.CreationTime.TryToDateTime()
-                     })
-                    .GroupBy(p => p.Year)
-                    .Select(p => new QueryPostDto
-                    {
-                        Year = p.Key,
-                        Posts = p.ToList()
-                    });
-                result.IsSuccess(posts);
+                     }).AsQueryable();
+
+                var count = temp.Count();
+                var posts = temp.OrderByDescending(p => p.CreationTime)
+                 .PageByIndex(input.Page, input.Limit)
+                 .GroupBy(p => p.Year)
+                 .Select(p => new QueryPostDto
+                 {
+                     Year = p.Key,
+                     Posts = p.ToList()
+                 }).ToList();
+                result.IsSuccess(new PagedList<QueryPostDto>(count.TryToInt(), posts));
                 return result;
             });
         }
         /// <summary>
-        /// 通过标签名称查询文章列表
+        /// 通过标签Id查询文章列表
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name)
+        public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsByTagAsync(PagingInputById input)
         {
-            return await _blogCacheService.QueryPostsByTagAsync(name, async () =>
+            return await _blogCacheService.QueryPostsByTagAsync(input, async () =>
             {
-                var result = new ServiceResult<IEnumerable<QueryPostDto>>();
-                var posts =
+                var result = new ServiceResult<PagedList<QueryPostDto>>();
+                var temp =
                     (from postTag in await _postTagRepository.GetListAsync()
                      join tag in await _tagRepository.GetListAsync()
                      on postTag.TagId equals tag.Id
-                     join post in await _postRepository.GetListAsync() 
+                     join post in await _postRepository.GetListAsync()
                      on postTag.PostId equals post.Id
-                     where tag.TagName.Equals(name)
+                     where tag.Id.Equals(input.Id)
                      orderby post.CreationTime descending
                      select new PostBriefDto
                      {
                          Title = post.Title,
+                         Brief = HtmlHelper.GetContentSummary(post.Html, 100, true),
                          Url = post.Url,
                          Year = post.CreationTime.Year,
                          CreationTime = post.CreationTime.TryToDateTime()
-                     })
+                     }).AsQueryable();
+
+                var count = temp.Count();
+                var posts = temp.OrderByDescending(p => p.CreationTime)
+                    .PageByIndex(input.Page, input.Limit)
                     .GroupBy(p => p.Year)
                     .Select(p => new QueryPostDto
                     {
                         Year = p.Key,
                         Posts = p.ToList()
-                    });
-                result.IsSuccess(posts);
+                    }).ToList();
+                result.IsSuccess(new PagedList<QueryPostDto>(count.TryToInt(), posts));
                 return result;
             });
         }

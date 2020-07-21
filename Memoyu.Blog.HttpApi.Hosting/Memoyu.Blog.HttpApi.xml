@@ -158,18 +158,18 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryPostsByCategoryAsync(System.String)">
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryPostsByCategoryAsync(Memoyu.Blog.Application.Contracts.Blog.PagingInputById)">
             <summary>
-            通过分类名称查询文章列表
+            通过分类Id查询文章列表
             </summary>
-            <param name="name"></param>
+            <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryPostsByTagAsync(System.String)">
+        <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.QueryPostsByTagAsync(Memoyu.Blog.Application.Contracts.Blog.PagingInputById)">
             <summary>
-            通过标签名称查询文章列表
+            通过标签Id查询文章列表
             </summary>
-            <param name="name"></param>
+            <param name="input"></param>
             <returns></returns>
         </member>
         <member name="M:Memoyu.Blog.HttpApi.Controllers.BlogController.GetCategoryAsync(System.String)">

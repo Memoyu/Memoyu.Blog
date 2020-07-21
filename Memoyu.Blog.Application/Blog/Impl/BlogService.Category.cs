@@ -35,16 +35,18 @@ namespace Memoyu.Blog.Application.Blog.Impl
             {
                 var result = new ServiceResult<IEnumerable<QueryCategoryDto>>();
 
-                var categories = from categtory in await _categoryRepository.GetListAsync()
+                var categories = from category in await _categoryRepository.GetListAsync()
                                  join posts in await _postRepository.GetListAsync()
-                                     on categtory.Id equals posts.CategoryId
-                                 group categtory by new
+                                     on category.Id equals posts.CategoryId
+                                 group category by new
                                  {
-                                     categtory.CategoryName,
-                                     categtory.DisplayName
+                                     category.CategoryName,
+                                     category.DisplayName,
+                                     category.Id
                                  } into g
                                  select new QueryCategoryDto
                                  {
+                                     Id = g.Key.Id,
                                      CategoryName = g.Key.CategoryName,
                                      DisplayName = g.Key.DisplayName,
                                      Count = g.Count()

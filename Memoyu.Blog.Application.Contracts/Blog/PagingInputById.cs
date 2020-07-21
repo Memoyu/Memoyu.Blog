@@ -1,10 +1,10 @@
 ﻿/**************************************************************************  
 *   =================================
 *   CLR版本  ：4.0.30319.42000
-*   文件名称 ：QueryCategoryDto
+*   文件名称 ：PagingInputById
 *   =================================
 *   创 建 者 ：Memoyu
-*   创建日期 ：2020/7/7 9:08:11
+*   创建日期 ：2020/7/21 13:31:41
 *   功能描述 ：
 *   =================================
 *   修 改 者 ：
@@ -12,21 +12,17 @@
 *   修改内容 ：
 *   ================================= 
 ***************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Text;
+
+using System.ComponentModel.DataAnnotations;
 
 namespace Memoyu.Blog.Application.Contracts.Blog
 {
-    public class QueryCategoryDto:CategoryDto
+    public class PagingInputById : PagingInput
     {
         /// <summary>
-        /// 分类Id
+        /// Id
         /// </summary>
+        [Required]
         public int Id { get; set; }
-        /// <summary>
-        /// 总数
-        /// </summary>
-        public int Count { get; set; }
     }
 }

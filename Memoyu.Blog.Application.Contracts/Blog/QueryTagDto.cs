@@ -21,6 +21,10 @@ namespace Memoyu.Blog.Application.Contracts.Blog
     public class QueryTagDto:TagDto
     {
         /// <summary>
+        /// ID
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
         /// 总数
         /// </summary>
         public int Count { get; set; }
