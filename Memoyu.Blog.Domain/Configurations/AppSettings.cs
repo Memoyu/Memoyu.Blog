@@ -28,8 +28,8 @@ namespace Memoyu.Blog.Domain.Configurations
         static AppSettings()
         {
             //加载AppSetting.json,并构建ConfigurationRoot
-            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("AppSettings.json", true, true);
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())//GetCurrentDirectory()
+                .AddJsonFile("appsettings.json", true, true);
             _configuration = builder.Build();
         }
         /// <summary>

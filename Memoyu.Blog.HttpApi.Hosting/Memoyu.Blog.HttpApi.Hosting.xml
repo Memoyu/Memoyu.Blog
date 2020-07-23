@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Memoyu.Blog.HttpApi.Hosting</name>
+    </assembly>
+    <members>
+        <member name="M:Memoyu.Blog.HttpApi.Hosting.Filters.MemoyuExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            异常处理
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Memoyu.Blog.HttpApi.Hosting.MemoyuBlogHttpApiHostingModule">
+            <summary>
+            相当于一个web项目，但这里主要依赖于HttpApi模块，用来暴露我们的API的。
+            </summary>
+        </member>
+        <member name="T:Memoyu.Blog.HttpApi.Hosting.Middleware.ExceptionHandlerMiddleware">
+            <summary>
+            异常处理中间件
+            </summary>
+        </member>
+    </members>
+</doc>
