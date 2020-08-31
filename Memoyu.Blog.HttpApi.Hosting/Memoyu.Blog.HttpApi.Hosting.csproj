@@ -4,6 +4,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>231a81df-4bdf-40ee-8c5f-e858c74669a4</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,7 +26,14 @@
     <ProjectReference Include="..\Memoyu.Blog.EntityFrameworkCore\Memoyu.Blog.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Memoyu.Blog.HttpApi\Memoyu.Blog.HttpApi.csproj" />
     <ProjectReference Include="..\Memoyu.Blog.Swagger\Memoyu.Blog.Swagger.csproj" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Volo.Abp.Autofac" Version="2.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
