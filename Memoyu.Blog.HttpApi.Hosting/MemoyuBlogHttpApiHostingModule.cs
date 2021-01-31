@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Memoyu.Blog.BackgroundJobs;
 using Memoyu.Blog.Domain.Configurations;
 using Memoyu.Blog.EntityFrameworkCore;
 using Memoyu.Blog.HttpApi.Hosting.Filters;
 using Memoyu.Blog.HttpApi.Hosting.Middleware;
 using Memoyu.Blog.Swagger;
+using Memoyu.Blog.ToolKits.Base;
+using Memoyu.Blog.ToolKits.Base.Enum;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -13,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Serialization;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
@@ -46,6 +50,11 @@ namespace Memoyu.Blog.HttpApi.Hosting
                 //添加自定义拦截器
                 options.Filters.Add<MemoyuExceptionFilter>();
             });
+            Configure<MvcNewtonsoftJsonOptions>(options =>
+            {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
+
             // 跨域配置
             context.Services.AddCors(options =>
             {
@@ -79,6 +88,21 @@ namespace Memoyu.Blog.HttpApi.Hosting
                     //安全秘钥
                     IssuerSigningKey = new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.GetBytes())
 
+                };
+                options.Events = new JwtBearerEvents()
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        // 如果过期，则把<是否过期>添加到，返回头信息中
+                        ServiceResult result = new ServiceResult();
+                        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                        {
+                            context.Response.Headers.Add("Token-Expired", "true");
+                            result.IsSuccess("授权失败！");
+                            result.Code = ServiceResultCode.UnAuth;
+                        }
+                        return Task.FromResult(result);
+                    }
                 };
 
                 #region 仅能捕获授权异常-废弃

@@ -32,5 +32,10 @@ namespace Memoyu.Blog.ToolKits.Base.Enum
         /// 失败
         /// </summary>
         Failed = 1,
+
+        /// <summary>
+        /// 失败
+        /// </summary>
+        UnAuth = 2,
     }
 }

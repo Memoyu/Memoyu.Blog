@@ -1,12 +1,4 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:44313/",
-      "sslPort": 44313
-    }
-  },
   "profiles": {
     "Memoyu.Blog.Web": {
       "commandName": "Project",
@@ -14,7 +6,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:44313/"
+      "applicationUrl": "http://localhost:9090/"
     },
     "Docker": {
       "commandName": "Docker",

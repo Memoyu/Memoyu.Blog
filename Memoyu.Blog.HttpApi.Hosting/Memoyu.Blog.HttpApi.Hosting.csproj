@@ -16,12 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Memoyu.Blog.Application.Contracts.xml" />
-    <None Remove="Memoyu.Blog.Domain.xml" />
-    <None Remove="Memoyu.Blog.HttpApi.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Memoyu.Blog.BackgroundJobs\Memoyu.Blog.BackgroundJobs.csproj" />
     <ProjectReference Include="..\Memoyu.Blog.EntityFrameworkCore\Memoyu.Blog.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Memoyu.Blog.HttpApi\Memoyu.Blog.HttpApi.csproj" />
@@ -32,6 +26,18 @@
 
   <ItemGroup>
     <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Memoyu.Blog.Application.Contracts.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Memoyu.Blog.Domain.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Memoyu.Blog.HttpApi.Hosting.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Memoyu.Blog.HttpApi.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

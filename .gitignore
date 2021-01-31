@@ -9,8 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
-appsettings
-AppSettings
+Memoyu.Blog.HttpApi.Hosting/appsettings.json
+Memoyu.Blog.EntityFrameworkCore.DbMigrations/AppSettings.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
