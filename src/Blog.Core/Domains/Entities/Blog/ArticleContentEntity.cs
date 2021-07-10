@@ -23,11 +23,13 @@ namespace Blog.Core.Domains.Entities.Blog
         /// <summary>
         /// HTML
         /// </summary>
+        [Column(StringLength = -2)] 
         public string Html { get; set; }
 
         /// <summary>
         /// Markdown
         /// </summary>
+        [Column(StringLength = -2)]// 映射为MySql longtext
         public string Markdown { get; set; }
     }
 }

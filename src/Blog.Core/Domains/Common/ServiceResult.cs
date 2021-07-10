@@ -86,11 +86,12 @@ namespace Blog.Core.Domains.Common
         /// 响应失败(静态返回实例)
         /// </summary>
         /// <param name="message"></param>
-        public void Failed(string message = "")
+        public static ServiceResult Failed(string message = "")
         {
             var result = new ServiceResult();
             result.Message = message;
             result.Code = ServiceResultCode.Failed;
+            return result;
         }
         public override string ToString()
         {
@@ -111,22 +112,36 @@ namespace Blog.Core.Domains.Common
         /// 响应结果
         /// </summary>
         public T Result { get; set; }
+
         /// <summary>
         /// 响应成功-带结果
         /// </summary>
         /// <param name="result"></param>
         /// <param name="message"></param>
-        public ServiceResult<T> IsSuccess(T result = null, string message = "")
+        public void IsSuccess(T result = null, string message = "")
         {
             Message = message;
             Result = result;
             Code = ServiceResultCode.Succeed;
-            return this;
+        }
+
+        /// <summary>
+        /// 响应成功-操作失败
+        /// </summary>
+        /// <param name="message"></param>
+        public new static ServiceResult<T> Failed(string message = "")
+        {
+            var res = new ServiceResult<T>();
+            res.Message = message;
+            res.Result = null;
+            res.Code = ServiceResultCode.Failed;
+            return res;
         }
 
         /// <summary>
         /// 响应成功(静态返回实例)
         /// </summary>
+        /// <param name="result"></param>
         /// <param name="message"></param>
         public static ServiceResult<T> Successed(T result = null, string message = "")
         {

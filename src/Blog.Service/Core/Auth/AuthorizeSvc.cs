@@ -52,7 +52,7 @@ namespace Blog.Service.Core.Auth
                     "&state=", input.State,
                     "&redirect_uri=", input.RedirectUri
             });
-            return await Task.FromResult(new ServiceResult<string>().IsSuccess(url));
+            return await Task.FromResult(ServiceResult<string>.Successed(url));
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Blog.Service.Core.Auth
             }
 
             var content = await httpResponse.Content.ReadAsStringAsync();//获取响应内容
-            var userInfo = content.FromJson<UserOutput>();
+            var userInfo = content.FromJson<GitHubUserDto>();
             if (userInfo == null)
             {
                 result.IsFailed("未获取到用户信息");
@@ -144,7 +144,8 @@ namespace Blog.Service.Core.Auth
                 signingCredentials: signingCredentials//签名
                 );
             var token = new JwtSecurityTokenHandler().WriteToken(securityToken);//应用securityToken
-            return await Task.FromResult(result.IsSuccess(token));
+            result.IsSuccess(token);
+            return await Task.FromResult(result);
         }
     }
 }

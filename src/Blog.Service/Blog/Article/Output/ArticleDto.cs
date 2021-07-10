@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Blog.Core.Domains.Common.Base;
-using Blog.Core.Domains.Common.Consts;
-using FreeSql.DataAnnotations;
+using Blog.Service.Blog.Category.Output;
+using Blog.Service.Blog.Tag.Output;
 
-namespace Blog.Core.Domains.Entities.Blog
+namespace Blog.Service.Blog.Article.Output
 {
-    /// <summary>
-    /// 发表文章表
-    /// </summary>
-    [Table(Name = SystemConst.DbTablePrefix + "_article")]
-    public class ArticleEntity : FullAduitEntity
+    public class ArticleDto
     {
+        public long Id { get; set; }
+
         /// <summary>
         /// 标题
         /// </summary>
-        [Column(StringLength = 200)]
         public string Title { get; set; }
 
         /// <summary>
@@ -26,25 +22,21 @@ namespace Blog.Core.Domains.Entities.Blog
         /// <summary>
         /// 副标题
         /// </summary>
-        [Column(StringLength = 300)]
         public string Subtitle { get; set; }
 
         /// <summary>
         /// 简介
         /// </summary>
-        [Column(StringLength = 500)]
         public string Introduction { get; set; }
 
         /// <summary>
         /// 作者
         /// </summary>
-        [Column(StringLength = 50)]
         public string Author { get; set; }
 
         /// <summary>
         /// 链接
         /// </summary>
-        [Column(StringLength = 100)]
         public string Url { get; set; }
 
         /// <summary>
@@ -65,22 +57,21 @@ namespace Blog.Core.Domains.Entities.Blog
         /// <summary>
         /// 缩略图地址
         /// </summary>
-        [Column(StringLength = 100)]
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
-        /// 分类Id
+        /// 分类
         /// </summary>
-        public long CategoryId { get; set; }
+        public CategoryDto Category { get; set; }
 
+        /// <summary>
+        /// 标签
+        /// </summary>
+        public List<TagDto> Tags { get; set; }
 
-        [Navigate]
-        public virtual CategoryEntity Category { get; set; }
-
-        [Navigate(ManyToMany = typeof(ArticleTagEntity))]
-        public virtual IEnumerable<TagEntity> Tags { get; set; }
-
-        [Navigate("ArticleId")]
-        public virtual ICollection<ArticleTagEntity> ArticleTags { get; set; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; }
     }
 }

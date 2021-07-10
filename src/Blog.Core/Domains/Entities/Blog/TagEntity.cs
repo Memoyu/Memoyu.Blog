@@ -1,4 +1,5 @@
-﻿using Blog.Core.Domains.Common.Base;
+﻿using System.Collections.Generic;
+using Blog.Core.Domains.Common.Base;
 using Blog.Core.Domains.Common.Consts;
 using FreeSql.DataAnnotations;
 
@@ -20,5 +21,8 @@ namespace Blog.Core.Domains.Entities.Blog
         /// 排序
         /// </summary>
         public int Sort { get; set; }
+
+        [Navigate(ManyToMany = typeof(ArticleTagEntity))]
+        public virtual ICollection<ArticleEntity> Articles { get; set; }
     }
 }

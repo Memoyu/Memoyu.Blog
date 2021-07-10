@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Blog.Core.Domains.Entities.Core;
-using Blog.Service.Common.Common.Converter;
 using Blog.Service.Core.Auth.Output.GitHub;
 
-namespace Blog.Service.Common.Mapper.Core.Auth
+namespace Blog.Service.Common.Mapper.Core
 {
-    public class UserMapper : Profile
+    public class CoreMapper : Profile
     {
-        public UserMapper()
+        public CoreMapper()
         {
-            CreateMap<UserOutput, UserEntity>()
+            CreateMap<GitHubUserDto, UserEntity>()
                 .ForMember(d =>d.Id, opt=>opt.Ignore())
                 .ForMember(d => d.UserId, opt=>opt.MapFrom(src => src.Id))
                 .ForMember(d => d.AvatarUrl, opt => opt.MapFrom(src => src.Avatar_url))

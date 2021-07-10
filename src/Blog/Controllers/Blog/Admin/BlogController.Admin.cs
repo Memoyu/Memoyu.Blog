@@ -25,7 +25,7 @@ namespace Blog.Controllers.Blog.Admin
         [Route("post")]
         public async Task<ServiceResult<string>> GetPostDetailAsync([FromQuery] string url)
         {
-            return await Task.FromResult(new ServiceResult<string>().IsSuccess("Message"));
+            return await Task.FromResult(ServiceResult<string>.Successed("Message"));
         }
     }
 }

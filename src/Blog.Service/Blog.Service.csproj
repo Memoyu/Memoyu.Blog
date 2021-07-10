@@ -16,13 +16,9 @@
 
   <ItemGroup>
     <Folder Include="Blog\Category\Input\" />
-    <Folder Include="Blog\Category\Output\" />
     <Folder Include="Blog\FriendLink\Input\" />
     <Folder Include="Blog\FriendLink\Output\" />
-    <Folder Include="Blog\Article\Input\" />
-    <Folder Include="Blog\Article\Output\" />
     <Folder Include="Blog\Tag\Input\" />
-    <Folder Include="Blog\Tag\Output\" />
     <Folder Include="Core\Files\Input\" />
   </ItemGroup>
 

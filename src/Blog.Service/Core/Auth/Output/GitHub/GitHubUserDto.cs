@@ -1,6 +1,6 @@
 ﻿namespace Blog.Service.Core.Auth.Output.GitHub
 {
-    public class UserOutput
+    public class GitHubUserDto
     {
         public string Login { get; set; }
 

@@ -9,6 +9,118 @@
             仓储
             </summary>
         </member>
+        <member name="M:Blog.Service.Blog.Article.IArticleSvc.GetPagesAsync(Blog.Service.Blog.Article.Input.ArticlePagingDto)">
+            <summary>
+            获取文章分页数据
+            </summary>
+            <param name="pagingDto">分页参数</param>
+            <returns></returns>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Input.ArticlePagingDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Input.ArticlePagingDto.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Input.ArticlePagingDto.IsTop">
+            <summary>
+            是否置顶
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Input.ArticlePagingDto.CategoryId">
+            <summary>
+            分类Id
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Input.ArticlePagingDto.CreateTimeStart">
+            <summary>
+            创建时间起
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Input.ArticlePagingDto.CreateTimeEnd">
+            <summary>
+            创建时间止
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.TitleColor">
+            <summary>
+            标题颜色
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Subtitle">
+            <summary>
+            副标题
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Introduction">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.IsTop">
+            <summary>
+            是否置顶
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Hits">
+            <summary>
+            点击数
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Comments">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.ThumbnailUrl">
+            <summary>
+            缩略图地址
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Category">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Category.Output.CategoryDto.Name">
+            <summary>
+            分类名称
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Category.Output.CategoryDto.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
         <member name="M:Blog.Service.Core.Auth.AuthorizeSvc.GetLoginUrlAsync">
             <summary>
             构建GitHub登录地址

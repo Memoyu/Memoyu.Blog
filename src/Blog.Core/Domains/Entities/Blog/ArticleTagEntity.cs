@@ -19,5 +19,11 @@ namespace Blog.Core.Domains.Entities.Blog
         /// 标签Id
         /// </summary>
         public long TagId { get; set; }
+
+        [Navigate("ArticleId")]
+        public ArticleEntity Article { get; set; }
+
+        [Navigate("TagId")]
+        public TagEntity Tag { get; set; }
     }
 }
