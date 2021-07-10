@@ -21,7 +21,5 @@ namespace Blog.Core.Interface.IRepositories.Core
         /// <param name="entity">实体</param>
         /// <returns></returns>
         Task<UserEntity> AddOrUpdateAsync(UserEntity entity);
-
-
     }
 }

@@ -12,5 +12,6 @@ namespace Blog.Controllers.Blog
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v1)]
     public class BlogController
     {
+
     }
 }
