@@ -32,9 +32,9 @@ namespace Blog.Infrastructure.Repository.Base
             if (!(entity is ICreateAduitEntity e)) return;
 
             e.CreateTime = DateTime.Now;
-            if (e.CreateUserId == 0 && CurrentUser.Id != null)
+            if (e.CreateUserId == 0)
             {
-                e.CreateUserId = CurrentUser.Id ?? 0;
+                e.CreateUserId = CurrentUser.Id;
             }
 
             if (!(entity is IUpdateAuditEntity updateAuditEntity)) return;

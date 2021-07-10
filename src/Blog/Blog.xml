@@ -50,5 +50,12 @@
             </summary>
             <param name="file"></param>
         </member>
+        <member name="M:Blog.Controllers.Blog.Admin.BlogController.GetPostDetailAsync(System.String)">
+            <summary>
+            根据URL获取文章详情
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

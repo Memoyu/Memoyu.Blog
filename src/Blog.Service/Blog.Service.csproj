@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Mapper\Core\" />
     <Folder Include="Core\Files\Input\" />
   </ItemGroup>
 

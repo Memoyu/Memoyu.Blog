@@ -12,20 +12,29 @@ using Blog.Core.AOP.Attributes;
 using Blog.Core.Common.Configs;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
+using Blog.Core.Domains.Entities.Core;
 using Blog.Core.Extensions;
+using Blog.Core.Interface.IRepositories.Core;
+using Blog.Service.Base;
 using Blog.Service.Core.Auth.Input;
 using Blog.Service.Core.Auth.Input.GitHub;
 using Blog.Service.Core.Auth.Output.GitHub;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace Blog.Service.Core.Auth
 {
-    public class AuthorizeSvc: IAuthorizeSvc
+    public class AuthorizeSvc : ApplicationSvc, IAuthorizeSvc
     {
         private readonly IHttpClientFactory _httpClient;
-        public AuthorizeSvc(IHttpClientFactory httpClient)
+        private readonly IAdminUserRepo _adminUserRepo;
+        private readonly IUserRepo _userRepo;
+
+        public AuthorizeSvc(IHttpClientFactory httpClient, IAdminUserRepo adminUserRepo, IUserRepo userRepo)
         {
             _httpClient = httpClient;
+            _adminUserRepo = adminUserRepo;
+            _userRepo = userRepo;
         }
 
         /// <summary>
@@ -81,7 +90,7 @@ namespace Blog.Service.Core.Auth
         /// </summary>
         /// <param name="accessToken"></param>
         /// <returns></returns>
-        [Cacheable(60 * 60)]
+        [Cacheable(5 * 60 * 60 - 10)]
         public async Task<ServiceResult<string>> GenerateTokenAsync(string accessToken)
         {
             var result = new ServiceResult<string>();
@@ -108,7 +117,11 @@ namespace Blog.Service.Core.Auth
                 result.IsFailed("未获取到用户信息");
                 return result;
             }
-            if (userInfo.Id != (GitHubConfig.UserId))
+            //将用户信息写入数据库，存在则更新
+            var entity = Mapper.Map<UserEntity>(userInfo);
+            await _userRepo.AddOrUpdateAsync(entity);
+            var admins = await _adminUserRepo.GetsAsync();
+            if (admins.All(a => a.UserId != userInfo.Id))
             {
                 result.IsFailed("当前用户未授权");
                 return result;

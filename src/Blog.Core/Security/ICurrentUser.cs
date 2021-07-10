@@ -4,7 +4,7 @@ namespace Blog.Core.Security
 {
     public interface ICurrentUser
     {
-        long? Id { get; }
+        long Id { get; }
 
         string UserName { get; }
         long[] Roles { get; }

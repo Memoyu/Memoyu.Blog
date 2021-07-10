@@ -25,10 +25,7 @@ namespace Blog.Service.Base
             {
                 lock (ServiceProviderLock)
                 {
-                    if (reference == null)
-                    {
-                        reference = (TRef)ServiceProvider.GetRequiredService(serviceType);
-                    }
+                    reference ??= (TRef) ServiceProvider.GetRequiredService(serviceType);
                 }
             }
 
@@ -58,7 +55,5 @@ namespace Blog.Service.Base
         //授权
         private IAuthorizationService _authorizationService;
         public IAuthorizationService AuthorizationService => LazyGetRequiredService(ref _authorizationService);
-        
-
     }
 }

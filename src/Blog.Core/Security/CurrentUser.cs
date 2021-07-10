@@ -16,7 +16,7 @@ namespace Blog.Core.Security
         {
             _claimsPrincipal = httpContextAccessor.HttpContext?.User ?? Thread.CurrentPrincipal as ClaimsPrincipal;
         }
-        public long? Id => _claimsPrincipal?.FindUserId();
+        public long Id => _claimsPrincipal.FindUserId();
         public string UserName => _claimsPrincipal?.FindUserName();
         public string Nickname => _claimsPrincipal.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.GivenName)?.Value;
         public string Email => _claimsPrincipal.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;

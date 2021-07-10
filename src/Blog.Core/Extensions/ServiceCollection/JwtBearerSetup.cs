@@ -51,7 +51,7 @@ namespace Blog.Core.Extensions.ServiceCollection
                     // 验证过期时间
                     ValidateLifetime = true,
 
-                    //偏移设置为了0s,用于测试过期策略,完全按照access_token的过期时间策略，默认原本为5分钟
+                    //偏移设置为了0s,用于测试过期策略,完全按照access_token的过期时间策略，默认为5分钟
                     ClockSkew = TimeSpan.Zero
                 };
 
