@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Service.Blog.Tag.Output
+namespace Blog.Service.Blog.Category.Input
 {
-    public class TagDto
+    public class AddCategoryDto
     {
-        public long Id { get; set; }
-
         /// <summary>
-        /// 标签名称
+        /// 分类名称
         /// </summary>
         public string Name { get; set; }
 
@@ -20,6 +18,10 @@ namespace Blog.Service.Blog.Tag.Output
         /// </summary>
         public int Sort { get; set; }
 
-        public DateTime CreateTime { get; set; }
+        public (bool Fail, string Msg) Validation()
+        {
+            if (string.IsNullOrWhiteSpace(Name)) return (true, "分类名称不能为空");
+            return (false, string.Empty);
+        }
     }
 }

@@ -4,21 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Service.Blog.Tag.Output
+namespace Blog.Service.Blog.FriendLink.Output
 {
-    public class TagDto
+    public class FriendLinkDto
     {
         public long Id { get; set; }
 
         /// <summary>
-        /// 标签名称
+        /// 标题
         /// </summary>
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
-        /// 排序
+        /// 简介
         /// </summary>
-        public int Sort { get; set; }
+        public string Desc { get; set; }
+
+        /// <summary>
+        /// 链接
+        /// </summary>
+        public string LinkUrl { get; set; }
 
         public DateTime CreateTime { get; set; }
     }

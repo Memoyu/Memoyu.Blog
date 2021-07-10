@@ -15,10 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Blog\Category\Input\" />
     <Folder Include="Blog\FriendLink\Input\" />
-    <Folder Include="Blog\FriendLink\Output\" />
-    <Folder Include="Blog\Tag\Input\" />
     <Folder Include="Core\Files\Input\" />
   </ItemGroup>
 

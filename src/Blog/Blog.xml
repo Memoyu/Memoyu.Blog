@@ -50,18 +50,97 @@
             </summary>
             <param name="file"></param>
         </member>
-        <member name="M:Blog.Controllers.Blog.Admin.BlogController.GetPostDetailAsync(System.String)">
+        <member name="M:Blog.Controllers.Blog.Admin.ArticleController.GetPostDetailAsync(System.String)">
             <summary>
             根据URL获取文章详情
             </summary>
             <param name="url"></param>
             <returns></returns>
         </member>
-        <member name="M:Blog.Controllers.Blog.BlogController.GetPagesAsync(Blog.Service.Blog.Article.Input.ArticlePagingDto)">
+        <member name="M:Blog.Controllers.Blog.Admin.CategoryController.AddAsync(Blog.Service.Blog.Category.Input.AddCategoryDto)">
+            <summary>
+            新增文章分类
+            </summary>
+            <param name="add">文章分类信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Blog.Admin.CategoryController.DeleteAsync(System.Int64)">
+            <summary>
+            删除文章分类
+            </summary>
+            <param name="id">文章分类Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Blog.Admin.CategoryController.UpdateAsync(Blog.Service.Blog.Category.Input.ModifyCategoryDto)">
+            <summary>
+            更新文章分类
+            </summary>
+            <param name="modify">文章分类信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Blog.Admin.TagController.AddAsync(Blog.Service.Blog.Tag.Input.AddTagDto)">
+            <summary>
+            新增文章标签
+            </summary>
+            <param name="add">文章标签信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Blog.Admin.TagController.DeleteAsync(System.Int64)">
+            <summary>
+            删除文章标签
+            </summary>
+            <param name="id">文章标签Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Blog.Admin.TagController.UpdateAsync(Blog.Service.Blog.Tag.Input.ModifyTagDto)">
+            <summary>
+            更新文章标签
+            </summary>
+            <param name="modify">文章标签信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Blog.Controllers.Blog.ArticleController">
+            <summary>
+            文章
+            </summary>
+        </member>
+        <member name="M:Blog.Controllers.Blog.ArticleController.GetPagesAsync(Blog.Service.Blog.Article.Input.ArticlePagingDto)">
             <summary>
             获取文章分页列表
             </summary>
             <param name="pagingDto">分页条件</param>
+        </member>
+        <member name="T:Blog.Controllers.Blog.CategoryController">
+            <summary>
+            文章分类
+            </summary>
+        </member>
+        <member name="M:Blog.Controllers.Blog.CategoryController.GetAsync(System.Int64)">
+            <summary>
+            获取文章分类
+            </summary>
+            <param name="id">文章分类Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Blog.CategoryController.GetsAsync">
+            <summary>
+            获取文章分类列表
+            </summary>
+        </member>
+        <member name="T:Blog.Controllers.Blog.TagController">
+            <summary>
+            文章标签
+            </summary>
+        </member>
+        <member name="M:Blog.Controllers.Blog.TagController.GetAsync(System.Int64)">
+            <summary>
+            获取文章标签
+            </summary>
+        </member>
+        <member name="M:Blog.Controllers.Blog.TagController.GetsAsync">
+            <summary>
+            获取文章标签列表
+            </summary>
         </member>
     </members>
 </doc>

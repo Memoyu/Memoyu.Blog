@@ -111,6 +111,50 @@
             创建时间
             </summary>
         </member>
+        <member name="M:Blog.Service.Blog.Category.ICategorySvc.AddAsync(Blog.Service.Blog.Category.Input.AddCategoryDto)">
+            <summary>
+            新增文章分类
+            </summary>
+            <param name="add">文章分类信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.Category.ICategorySvc.DeleteAsync(System.Int64)">
+            <summary>
+            删除文章分类
+            </summary>
+            <param name="id">文章分类Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.Category.ICategorySvc.GetAsync(System.Int64)">
+            <summary>
+            获取文章分类
+            </summary>
+            <param name="id">文章分类Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.Category.ICategorySvc.GetsAsync">
+            <summary>
+            获取所有文章分类列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.Category.ICategorySvc.UpdateAsync(Blog.Service.Blog.Category.Input.ModifyCategoryDto)">
+            <summary>
+            更新文章分类
+            </summary>
+            <param name="modify">文章分类信息</param>
+            <returns></returns>
+        </member>
+        <member name="P:Blog.Service.Blog.Category.Input.AddCategoryDto.Name">
+            <summary>
+            分类名称
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Category.Input.AddCategoryDto.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
         <member name="P:Blog.Service.Blog.Category.Output.CategoryDto.Name">
             <summary>
             分类名称
@@ -119,6 +163,85 @@
         <member name="P:Blog.Service.Blog.Category.Output.CategoryDto.Sort">
             <summary>
             排序
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Category.Output.CategoryTotalDto.Total">
+            <summary>
+            关联文章数量
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.FriendLink.Output.FriendLinkDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.FriendLink.Output.FriendLinkDto.Desc">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.FriendLink.Output.FriendLinkDto.LinkUrl">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Tag.Input.AddTagDto.Name">
+            <summary>
+            标签名称
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Tag.Input.AddTagDto.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="M:Blog.Service.Blog.Tag.ITagSvc.AddAsync(Blog.Service.Blog.Tag.Input.AddTagDto)">
+            <summary>
+            新增文章标签
+            </summary>
+            <param name="add">文章标签信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.Tag.ITagSvc.DeleteAsync(System.Int64)">
+            <summary>
+            删除文章标签
+            </summary>
+            <param name="id">文章标签Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.Tag.ITagSvc.GetAsync(System.Int64)">
+            <summary>
+            获取文章标签
+            </summary>
+            <param name="id">文章标签Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.Tag.ITagSvc.GetsAsync">
+            <summary>
+            获取所有文章标签列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.Tag.ITagSvc.UpdateAsync(Blog.Service.Blog.Tag.Input.ModifyTagDto)">
+            <summary>
+            更新文章标签
+            </summary>
+            <param name="modify">文章标签信息</param>
+            <returns></returns>
+        </member>
+        <member name="P:Blog.Service.Blog.Tag.Output.TagDto.Name">
+            <summary>
+            标签名称
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Tag.Output.TagDto.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Tag.Output.TagTotalDto.Total">
+            <summary>
+            关联文章数量
             </summary>
         </member>
         <member name="M:Blog.Service.Core.Auth.AuthorizeSvc.GetLoginUrlAsync">

@@ -5,17 +5,25 @@ using System.Threading.Tasks;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
 using Blog.Core.Domains.Common.Enums.Base;
+using Blog.Service.Blog.Article;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers.Blog.Admin
 {
     [ApiController]
-    [Route("api/admin/blog")]
+    [Route("api/admin/article")]
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v2)]
     [Authorize]
-    public class BlogController
+    public class ArticleController
     {
+        private readonly IArticleSvc _articleSvc;
+
+        public ArticleController(IArticleSvc articleSvc)
+        {
+            _articleSvc = articleSvc;
+        }
+
         /// <summary>
         /// 根据URL获取文章详情
         /// </summary>

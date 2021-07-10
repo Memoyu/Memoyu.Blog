@@ -19,7 +19,7 @@ namespace Blog.Service.Blog.Article
             _articleRepo = articleRepo;
         }
 
-        public async Task<PagedDto<ArticleDto>> GetPagesAsync(ArticlePagingDto pagingDto)
+        public async Task<ServiceResult<PagedDto<ArticleDto>>> GetPagesAsync(ArticlePagingDto pagingDto)
         {
             pagingDto.Sort = pagingDto.Sort.IsNullOrEmpty() ? "create_time DESC" : pagingDto.Sort.Replace("-", " ");
             var articles = await _articleRepo
@@ -35,8 +35,8 @@ namespace Blog.Service.Blog.Article
                 .OrderBy(pagingDto.Sort)
                 .ToPageListAsync(pagingDto, out long total);
 
-            var dto = articles.Select(a => Mapper.Map<ArticleDto>(a)).ToList();
-            return await Task.FromResult(new PagedDto<ArticleDto>(dto, total));
+            var dtos = articles.Select(a => Mapper.Map<ArticleDto>(a)).ToList();
+            return await Task.FromResult(ServiceResult<PagedDto<ArticleDto>>.Successed(new PagedDto<ArticleDto>(dtos, total)));
 
         }
     }

@@ -38,5 +38,11 @@ namespace Blog.Service.Blog.Article.Input
         /// 创建时间止
         /// </summary>
         public DateTime? CreateTimeEnd { get; set; }
+
+        public (bool Fail, string Msg) Validation()
+        {
+            if (CreateTimeStart != null && CreateTimeEnd == null) return (true, "创建时间起止时间有误");
+            return (false, string.Empty);
+        }
     }
 }

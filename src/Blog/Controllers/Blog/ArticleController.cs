@@ -12,17 +12,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers.Blog
 {
+    /// <summary>
+    /// 文章
+    /// </summary>
     [ApiController]
-    [Route("api/blog")]
+    [Route("api/article")]
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v1)]
-    public class BlogController
+    public class ArticleController
     {
         private readonly IArticleSvc _articleSvc;
 
-        public BlogController(IArticleSvc articleSvc)
+        public ArticleController(IArticleSvc articleSvc)
         {
             _articleSvc = articleSvc;
         }
+
         /// <summary>
         /// 获取文章分页列表
         /// </summary>
@@ -30,9 +34,9 @@ namespace Blog.Controllers.Blog
         [HttpGet("pages")]
         public async Task<ServiceResult<PagedDto<ArticleDto>>> GetPagesAsync([FromQuery] ArticlePagingDto pagingDto)
         {
-            if (pagingDto.CreateTimeStart != null && pagingDto.CreateTimeEnd == null)
-                return ServiceResult<PagedDto<ArticleDto>>.Failed("创建时间起止时间有误");
-            return await Task.FromResult(ServiceResult<PagedDto<ArticleDto>>.Successed(await _articleSvc.GetPagesAsync(pagingDto)));
+            var validation = pagingDto.Validation();
+            if (validation.Fail) return ServiceResult<PagedDto<ArticleDto>>.Failed(validation.Msg);
+            return await Task.FromResult(await _articleSvc.GetPagesAsync(pagingDto));
         }
     }
 }
