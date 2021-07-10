@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blog</name>
+    </assembly>
+    <members>
+        <member name="T:Blog.Controllers.Core.AccountController">
+            <summary>
+            管理员授权相关
+            </summary>
+        </member>
+        <member name="M:Blog.Controllers.Core.AccountController.GetLoginAddressAsync">
+            <summary>
+            获取登录GitHub地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Core.AccountController.GetAccessTokenAsync(System.String)">
+            <summary>
+            获取AccessToken
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Core.AccountController.GenerateTokenAsync(System.String)">
+            <summary>
+            登录成功，生成Token
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Core.FileController.UploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.Int32)">
+            <summary>
+            单文件上传，键为file
+            </summary>
+            <param name="file"></param>
+            <param name="type"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Core.FileController.UploadFiles(System.String)">
+            <summary>
+            多文件上传
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Core.FileController.ValidFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            校验上传文件
+            </summary>
+            <param name="file"></param>
+        </member>
+    </members>
+</doc>

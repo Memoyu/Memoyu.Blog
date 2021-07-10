@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blog.Service</name>
+    </assembly>
+    <members>
+        <member name="P:Blog.Service.Base.CrudApplicationSvc`7.Repository">
+            <summary>
+            仓储
+            </summary>
+        </member>
+        <member name="M:Blog.Service.Core.Auth.AuthorizeSvc.GetLoginUrlAsync">
+            <summary>
+            构建GitHub登录地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Core.Auth.AuthorizeSvc.GetAccessTokenAsync(System.String)">
+            <summary>
+            获取AccessToken
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Core.Auth.AuthorizeSvc.GenerateTokenAsync(System.String)">
+            <summary>
+            登录GitHub成功，生成Token
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Core.Auth.IAuthorizeSvc.GetLoginUrlAsync">
+            <summary>
+            获取登录地址（GitHub）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Core.Auth.IAuthorizeSvc.GetAccessTokenAsync(System.String)">
+            <summary>
+            获取AccessToken
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Core.Auth.IAuthorizeSvc.GenerateTokenAsync(System.String)">
+            <summary>
+            登录成功，生成Token
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Blog.Service.Core.Auth.Input.GitHub.AccessTokenInput.ClientId">
+            <summary>
+            Client ID
+            </summary>
+        </member>
+        <member name="F:Blog.Service.Core.Auth.Input.GitHub.AccessTokenInput.ClientSecret">
+            <summary>
+            Client Secret
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Auth.Input.GitHub.AccessTokenInput.Code">
+            <summary>
+            调用API_Authorize获取到的Code值
+            </summary>
+        </member>
+        <member name="F:Blog.Service.Core.Auth.Input.GitHub.AccessTokenInput.RedirectUri">
+            <summary>
+            Authorization callback URL
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Auth.Input.GitHub.AccessTokenInput.State">
+            <summary>
+            State
+            </summary>
+        </member>
+        <member name="F:Blog.Service.Core.Auth.Input.GitHub.AuthorizeInput.ClientId">
+            <summary>
+            客户端Id
+            </summary>
+        </member>
+        <member name="F:Blog.Service.Core.Auth.Input.GitHub.AuthorizeInput.RedirectUri">
+            <summary>
+            授权回调地址
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Auth.Input.GitHub.AuthorizeInput.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Auth.Input.GitHub.AuthorizeInput.Scope">
+            <summary>
+            该参数可选，需要调用Github哪些信息，可以填写多个，以逗号分割，比如：scope=user,public_repo。
+            如果不填写，那么你的应用程序将只能读取Github公开的信息，比如公开的用户信息，公开的库(repository)信息以及gists信息
+            </summary>
+        </member>
+        <member name="M:Blog.Service.Core.Files.IFileSvc.UploadAsync(Microsoft.AspNetCore.Http.IFormFile,System.String,System.Int32)">
+            <summary>
+            单文件上传，键为file
+            </summary>
+            <param name="file"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Core.Files.LocalFileSvc.UploadAsync(Microsoft.AspNetCore.Http.IFormFile,System.String,System.Int32)">
+            <summary>
+            本地文件上传，秒传（根据lin_file表中的md5,与当前文件的路径是否在本地），如果不在，重新上传，覆盖文件表记录
+            </summary>
+            <param name="file"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Core.Files.LocalFileSvc.LocalUploadAsync(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            本地文件上传，生成目录格式 {STORE_DIR}/{year}/{month}/{day}/{guid}.文件后缀
+            images/2022-01-12/fba73a0c-f2f7-499a-8ed8-5b10554d43b0.jpg
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
