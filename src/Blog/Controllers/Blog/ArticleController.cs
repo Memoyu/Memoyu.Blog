@@ -38,5 +38,17 @@ namespace Blog.Controllers.Blog
             if (validation.Fail) return ServiceResult<PagedDto<ArticleDto>>.Failed(validation.Msg);
             return await Task.FromResult(await _articleSvc.GetPagesAsync(pagingDto));
         }
+
+        /// <summary>
+        /// 获取文章详情
+        /// </summary>
+        /// <param name="id">分页条件</param>
+        [HttpGet("{id}")]
+        public async Task<ServiceResult<ArticleContentDto>> GetAsync(long id)
+        {
+            if (id <= 0)
+                return ServiceResult<ArticleContentDto>.Failed("id不能小于等于0");
+            return await Task.FromResult(await _articleSvc.GetAsync(id));
+        }
     }
 }

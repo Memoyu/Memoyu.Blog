@@ -1,10 +1,8 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Blog.Core.AOP.Intercepts;
-using Blog.Service.Core.Auth;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace Blog.Modules

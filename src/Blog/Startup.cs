@@ -9,7 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Reflection;
+using Blog.Core.Common;
+using Serilog.Events;
 
 namespace Blog
 {
@@ -38,11 +41,11 @@ namespace Blog
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new AutofacModule());//注入一些杂项
-            builder.RegisterModule(new RepositoryModule());//注入仓储
-            builder.RegisterModule(new ServiceModule());//注入服务
-            builder.RegisterModule(new DependencyModule());//自动注入，类似Abp中的继承对应的接口就会注入对应接口的生命周期
-            builder.RegisterModule(new FreeSqlModule());//注入FreeSql
+            builder.RegisterModule(new AutofacModule());//注册一些杂项
+            builder.RegisterModule(new RepositoryModule());//注册仓储
+            builder.RegisterModule(new ServiceModule());//注册服务
+            builder.RegisterModule(new DependencyModule());//自动注册，类似Abp中的继承对应的接口就会注册对应接口的生命周期
+            builder.RegisterModule(new FreeSqlModule());//注册FreeSql
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,13 +55,31 @@ namespace Blog
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger().UseSwaggerUI();
             }
+
             //跨域
             app.UseCors(Appsettings.Cors.CorsName);
+
             //静态文件
             app.UseStaticFiles();
 
+            // 日志精简化输出
+            app.UseSerilogRequestLogging(opts =>
+            {
+                opts.EnrichDiagnosticContext = LogUtil.EnrichFromRequest;
+                opts.GetLevel = (ctx, _, ex) =>
+                {
+                    var path = ctx.Request.Path;
+                    switch (path)
+                    {
+                        case "/health":
+                            return LogEventLevel.Debug;
+                    }
+                    return ex != null || ctx.Response.StatusCode > 499 ? LogEventLevel.Error : LogEventLevel.Information;
+                };
+            });
+
             // Ip限流
-            app.UseIpLimitMilddleware();
+            app.UseMiddleware<IpLimitMiddleware>();
 
             // 记录ip请求
             app.UseMiddleware<IPLogMilddleware>();

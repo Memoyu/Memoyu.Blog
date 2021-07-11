@@ -7,6 +7,7 @@ using Blog.Core.Interface.IRepositories.Blog;
 using Blog.Service.Base;
 using Blog.Service.Blog.Article.Input;
 using Blog.Service.Blog.Article.Output;
+using Microsoft.Extensions.Logging;
 
 namespace Blog.Service.Blog.Article
 {
@@ -38,6 +39,24 @@ namespace Blog.Service.Blog.Article
             var dtos = articles.Select(a => Mapper.Map<ArticleDto>(a)).ToList();
             return await Task.FromResult(ServiceResult<PagedDto<ArticleDto>>.Successed(new PagedDto<ArticleDto>(dtos, total)));
 
+        }
+
+        public async Task<ServiceResult<ArticleContentDto>> GetAsync(long id)
+        {
+            try
+            {
+
+                var article = await _articleRepo
+                    .Select
+                    .Where(a => a.Id == id)
+                    .ToOneAsync<ArticleContentDto>();
+                if (article == null) return await Task.FromResult(ServiceResult<ArticleContentDto>.Failed($"Id:{id} 的文章不存在"));
+                return await Task.FromResult(ServiceResult<ArticleContentDto>.Successed(article));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(ServiceResult<ArticleContentDto>.Failed($"获取文章详情异常"));
+            }
         }
     }
 }

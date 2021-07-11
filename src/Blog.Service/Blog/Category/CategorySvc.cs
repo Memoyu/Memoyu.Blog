@@ -5,21 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Entities.Blog;
+using Blog.Core.Exceptions;
 using Blog.Core.Interface.IRepositories.Blog;
 using Blog.Service.Base;
 using Blog.Service.Blog.Category.Input;
 using Blog.Service.Blog.Category.Output;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Blog.Service.Blog.Category
 {
     public class CategorySvc : ApplicationSvc, ICategorySvc
     {
+        private readonly ILogger<CategorySvc> _logger;
         private readonly ICategoryRepo _categoryRepo;
         private readonly IArticleRepo _articleRepo;
         private readonly IArticleContentRepo _articleContentRepo;
 
-        public CategorySvc(ICategoryRepo categoryRepo, IArticleRepo articleRepo, IArticleContentRepo articleContentRepo)
+        public CategorySvc(ILogger<CategorySvc> logger, ICategoryRepo categoryRepo, IArticleRepo articleRepo, IArticleContentRepo articleContentRepo)
         {
+            _logger = logger;
             _categoryRepo = categoryRepo;
             _articleRepo = articleRepo;
             _articleContentRepo = articleContentRepo;
@@ -27,20 +32,19 @@ namespace Blog.Service.Blog.Category
 
         public async Task<ServiceResult> AddAsync(AddCategoryDto add)
         {
-            try
-            {
-                var exist = await _categoryRepo.Select.AnyAsync(c => c.Name == add.Name);
-                if (exist) return await Task.FromResult(ServiceResult.Failed($"Name:{add.Name} 的文章分类已存在"));
-                var entity = Mapper.Map<CategoryEntity>(add);
-                await _categoryRepo.InsertAsync(entity);
-                return await Task.FromResult(ServiceResult.Successed("新增文章分类成功"));
-            }
-            catch (Exception ex)
-            {
-                // TODO 异常日志记录
-                return await Task.FromResult(ServiceResult.Failed($"新增文章分类异常"));
-            }
-
+            Log.Information("init main===============");
+            _logger.LogInformation("这是错误日志（注入）");
+            _logger.LogError("这是错误日志（注入）");
+            Logger.LogInformation("这是LogInformation");
+            Logger.LogWarning("这是LogWarning");
+            Logger.LogTrace("这是LogTrace");
+            Logger.LogCritical("这是LogCritical");
+            Logger.LogDebug("这是LogDebug");
+            var exist = await _categoryRepo.Select.AnyAsync(c => c.Name == add.Name);
+            if (exist) return await Task.FromResult(ServiceResult.Failed($"Name:{add.Name} 的文章分类已存在"));
+            var entity = Mapper.Map<CategoryEntity>(add);
+            await _categoryRepo.InsertAsync(entity);
+            return await Task.FromResult(ServiceResult.Successed("新增文章分类成功"));
         }
 
         public async Task<ServiceResult> DeleteAsync(long id)

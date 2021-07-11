@@ -32,7 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Logs\logs\" />
     <Folder Include="Modules\Configs\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

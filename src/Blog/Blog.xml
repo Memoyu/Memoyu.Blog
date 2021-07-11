@@ -110,6 +110,12 @@
             </summary>
             <param name="pagingDto">分页条件</param>
         </member>
+        <member name="M:Blog.Controllers.Blog.ArticleController.GetAsync(System.Int64)">
+            <summary>
+            获取文章详情
+            </summary>
+            <param name="id">分页条件</param>
+        </member>
         <member name="T:Blog.Controllers.Blog.CategoryController">
             <summary>
             文章分类

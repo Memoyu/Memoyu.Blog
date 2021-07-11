@@ -18,7 +18,6 @@
     "GeneralRules": [
       {
         "Endpoint": "*",
-       // "Endpoint": "*:/cms/test",
         "Period": "1s",
         "Limit": 10
       }

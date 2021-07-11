@@ -16,6 +16,13 @@
             <param name="pagingDto">分页参数</param>
             <returns></returns>
         </member>
+        <member name="M:Blog.Service.Blog.Article.IArticleSvc.GetAsync(System.Int64)">
+            <summary>
+            获取文章详情
+            </summary>
+            <param name="id">文章Id</param>
+            <returns></returns>
+        </member>
         <member name="P:Blog.Service.Blog.Article.Input.ArticlePagingDto.Title">
             <summary>
             标题
@@ -44,6 +51,16 @@
         <member name="P:Blog.Service.Blog.Article.Input.ArticlePagingDto.CreateTimeEnd">
             <summary>
             创建时间止
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleContentDto.Html">
+            <summary>
+            HTML
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleContentDto.Markdown">
+            <summary>
+            Markdown
             </summary>
         </member>
         <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Title">

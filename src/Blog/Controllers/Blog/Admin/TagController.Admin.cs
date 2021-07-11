@@ -42,8 +42,8 @@ namespace Blog.Controllers.Blog.Admin
         /// </summary>
         /// <param name="id">文章标签Id</param>
         /// <returns></returns>
-        [HttpDelete]
-        public async Task<ServiceResult> DeleteAsync([FromQuery] long id)
+        [HttpDelete("{id}")]
+        public async Task<ServiceResult> DeleteAsync(long id)
         {
             if (id <= 0)
                 return ServiceResult.Failed("id不能小于等于0");

@@ -1,4 +1,5 @@
-﻿using Blog.Core.Domains.Common.Base;
+﻿using System;
+using Blog.Core.Domains.Common.Base;
 using Blog.Core.Domains.Common.Consts;
 using FreeSql.DataAnnotations;
 
@@ -7,48 +8,40 @@ namespace Blog.Core.Domains.Entities.Core
     /// <summary>
     /// 日志表
     /// </summary>
-    [Table(Name = SystemConst.DbTablePrefix + "_log")]
-    public class LogEntity : FullAduitEntity
+    [Table(DisableSyncStructure = true, Name = SystemConst.DbTablePrefix + "_log")]
+    public class LogEntity
     {
-        /// <summary>
-        /// 访问哪个权限
-        /// </summary>
-        [Column(StringLength = 100)]
-        public string Authority { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
-        /// 日志信息
+        /// 异常信息
         /// </summary>
-        [Column(StringLength = 500)]
+        public string Exception { get; set; }
+
+        /// <summary>
+        /// 级别
+        /// </summary>
+        public int Level { get; set; }
+
+        /// <summary>
+        /// 信息
+        /// </summary>
         public string Message { get; set; }
 
         /// <summary>
-        /// 请求方法
+        /// 信息模板
         /// </summary>
-        [Column(StringLength = 20)]
-        public string Method { get; set; }
+        public string MessageTemplate { get; set; }
 
         /// <summary>
-        /// 请求路径
+        /// 属性
         /// </summary>
-        [Column(StringLength = 100)]
-        public string Path { get; set; }
+        public string Properties { get; set; }
 
         /// <summary>
-        /// 请求的http返回码
+        /// 时间戳
         /// </summary>
-        public int? StatusCode { get; set; }
-
-        /// <summary>
-        /// 用户id
-        /// </summary>
-        public long UserId { get; set; }
-
-        /// <summary>
-        /// 用户当时的昵称
-        /// </summary>
-        [Column(StringLength = 24)]
-        public string Username { get; set; }
+        public DateTime Timestamp { get; set; }
 
     }
 }

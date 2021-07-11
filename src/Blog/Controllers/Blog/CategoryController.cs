@@ -6,6 +6,7 @@ using Blog.Service.Blog.Category;
 using Blog.Service.Blog.Category.Input;
 using Blog.Service.Blog.Category.Output;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Blog.Controllers.Blog
 {
@@ -17,10 +18,12 @@ namespace Blog.Controllers.Blog
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v1)]
     public class CategoryController
     {
+        private readonly ILogger<CategoryController> _logger;
         private readonly ICategorySvc _categorySvc;
 
-        public CategoryController(ICategorySvc categorySvc)
+        public CategoryController(ILogger<CategoryController> logger,ICategorySvc categorySvc)
         {
+            _logger = logger;
             _categorySvc = categorySvc;
         }
 
@@ -29,8 +32,8 @@ namespace Blog.Controllers.Blog
         /// </summary>
         /// <param name="id">文章分类Id</param>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<ServiceResult<CategoryTotalDto>> GetAsync([FromQuery] long id)
+        [HttpGet("{id}")]
+        public async Task<ServiceResult<CategoryTotalDto>> GetAsync(long id)
         {
             if (id <= 0)
                 return ServiceResult<CategoryTotalDto>.Failed("id不能小于等于0");

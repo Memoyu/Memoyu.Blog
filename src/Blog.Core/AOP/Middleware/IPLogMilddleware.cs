@@ -30,7 +30,7 @@ namespace Blog.Core.AOP.Middleware
             if (isEnabled)
             {
                 // 过滤，只有接口
-                if (context.Request.Path.Value.Contains("api"))
+                if (context.Request.Path.Value != null && context.Request.Path.Value.Contains("api"))
                 {
                     context.Request.EnableBuffering();
 
@@ -40,7 +40,7 @@ namespace Blog.Core.AOP.Middleware
                         var request = context.Request;
                         var requestInfo = new RequestInfo()
                         {
-                            Ip = GetClientIP(context),
+                            Ip = GetClientIp(context),
                             Url = request.Path.ToString().Trim().TrimEnd('/').ToLower(),
                             Datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                             Date = DateTime.Now.ToString("yyyy-MM-dd"),
@@ -81,12 +81,12 @@ namespace Blog.Core.AOP.Middleware
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        private static string GetClientIP(HttpContext context)
+        private static string GetClientIp(HttpContext context)
         {
             var ip = context.Request.Headers["X-Forwarded-For"].ToString();
             if (string.IsNullOrEmpty(ip))
             {
-                ip = context.Connection.RemoteIpAddress.ToString();
+                if (context.Connection.RemoteIpAddress != null) ip = context.Connection.RemoteIpAddress.ToString();
             }
             return ip;
         }
@@ -133,8 +133,8 @@ namespace Blog.Core.AOP.Middleware
         /// </summary>
         /// <param name="filename">写入日志文件名</param>
         /// <param name="messages">写入信息</param>
-        /// <param name="IsHeader">是否加头部分割线</param>
-        private static void WriteLog(string filename, string[] messages, bool IsHeader = true)
+        /// <param name="isHeader">是否加头部分割线</param>
+        private static void WriteLog(string filename, string[] messages, bool isHeader = true)
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -144,7 +144,7 @@ namespace Blog.Core.AOP.Middleware
 
             var now = DateTime.Now;
             string logContent = String.Join("\r\n", messages);
-            if (IsHeader)
+            if (isHeader)
             {
                 logContent = (
                    "--------------------------------\r\n" +
