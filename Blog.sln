@@ -13,22 +13,22 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9D00EEBE-0ECA-4BD5-B3A6-60D36CF3CE3B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{4B5A7A13-CE91-4AD3-A1C8-203F3CFC6C59}"
-ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
+	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core", "src\Blog.Core\Blog.Core.csproj", "{F04C9C57-6189-400F-A886-F25122ACADE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Core", "src\Blog.Core\Blog.Core.csproj", "{F04C9C57-6189-400F-A886-F25122ACADE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog", "src\Blog\Blog.csproj", "{30377008-3CDA-4999-BB8E-434AC52323F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog", "src\Blog\Blog.csproj", "{30377008-3CDA-4999-BB8E-434AC52323F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Service", "src\Blog.Service\Blog.Service.csproj", "{3A668B91-9808-48F6-A464-BCABE052AD27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Service", "src\Blog.Service\Blog.Service.csproj", "{3A668B91-9808-48F6-A464-BCABE052AD27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Infrastructure", "src\Blog.Infrastructure\Blog.Infrastructure.csproj", "{AFC103DE-BBB7-4A80-A1A5-F61AE7BF2508}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Infrastructure", "src\Blog.Infrastructure\Blog.Infrastructure.csproj", "{AFC103DE-BBB7-4A80-A1A5-F61AE7BF2508}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.ToolKits", "src\Blog.ToolKits\Blog.ToolKits.csproj", "{D468A268-0C18-4A50-A872-7877BD9DD38C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.ToolKits", "src\Blog.ToolKits\Blog.ToolKits.csproj", "{D468A268-0C18-4A50-A872-7877BD9DD38C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

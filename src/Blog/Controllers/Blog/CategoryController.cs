@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Blog.Controllers.Core;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
 using Blog.Service.Blog.Category;
@@ -13,10 +14,9 @@ namespace Blog.Controllers.Blog
     /// <summary>
     /// 文章分类
     /// </summary>
-    [ApiController]
     [Route("api/category")]
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v1)]
-    public class CategoryController
+    public class CategoryController : ApiControllerBase
     {
         private readonly ILogger<CategoryController> _logger;
         private readonly ICategorySvc _categorySvc;

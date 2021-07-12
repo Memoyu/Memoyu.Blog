@@ -17,6 +17,12 @@ namespace Blog.Core.AOP.Middleware
     {
         //***************请求代理需要先注入IHttpContextAccessor，否者报错********************//
         private readonly RequestDelegate _requestDelegate;
+        private static readonly ILogger IpLog = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+            .WriteTo.File(Path.Combine($"Logs/ip_log/", $"ip_log.log"), rollingInterval: RollingInterval.Infinite, outputTemplate: "{Message}{NewLine}{Exception}")
+            .CreateLogger();
+
 
         public IPLogMilddleware(RequestDelegate requestDelegate)
         {
@@ -52,7 +58,7 @@ namespace Blog.Core.AOP.Middleware
                             // 自定义log输出
                             Parallel.For(0, 1, e =>
                             {
-                                WriteLog("RequestIpInfoLog", new string[] { requestInfo + "," }, false);
+                                WriteLog( new string[] { requestInfo + "," }, false);
                             });
 
                             request.Body.Position = 0;
@@ -131,30 +137,21 @@ namespace Blog.Core.AOP.Middleware
         /// <summary>
         /// 记录日志
         /// </summary>
-        /// <param name="filename">写入日志文件名</param>
         /// <param name="messages">写入信息</param>
         /// <param name="isHeader">是否加头部分割线</param>
-        private static void WriteLog(string filename, string[] messages, bool isHeader = true)
+        private static void WriteLog( string[] messages, bool isHeader = true)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
-                .WriteTo.File(Path.Combine($"Logs/Serilog/", $"{filename}.log"), rollingInterval: RollingInterval.Infinite, outputTemplate: "{Message}{NewLine}{Exception}")
-                .CreateLogger();
-
             var now = DateTime.Now;
             string logContent = String.Join("\r\n", messages);
             if (isHeader)
             {
                 logContent = (
                    "--------------------------------\r\n" +
-                   DateTime.Now + "|\r\n" +
+                   now + "|\r\n" +
                    String.Join("\r\n", messages) + "\r\n"
                    );
             }
-
-            Log.Information(logContent);
-            Log.CloseAndFlush();
+            IpLog.Information(logContent);
         }
     }
 }

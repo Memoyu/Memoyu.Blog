@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Controllers.Core;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
 using Blog.Core.Domains.Common.Enums.Base;
@@ -11,11 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers.Blog.Admin
 {
-    [ApiController]
     [Route("api/admin/article")]
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v2)]
     [Authorize]
-    public class ArticleController
+    public class ArticleController : ApiControllerBase
     {
         private readonly IArticleSvc _articleSvc;
 

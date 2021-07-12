@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Controllers.Core;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
 using Blog.Service.Blog.Tag;
@@ -11,11 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers.Blog.Admin
 {
-    [ApiController]
     [Route("api/admin/tag")]
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v2)]
     [Authorize]
-    public class TagController
+    public class TagController : ApiControllerBase
     {
         private readonly ITagSvc _tagSvc;
 

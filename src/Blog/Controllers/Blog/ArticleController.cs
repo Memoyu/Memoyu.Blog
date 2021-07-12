@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Controllers.Core;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
 using Blog.Core.Exceptions;
@@ -15,10 +16,9 @@ namespace Blog.Controllers.Blog
     /// <summary>
     /// 文章
     /// </summary>
-    [ApiController]
     [Route("api/article")]
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v1)]
-    public class ArticleController
+    public class ArticleController : ApiControllerBase
     {
         private readonly IArticleSvc _articleSvc;
 

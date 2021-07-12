@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Blog.Controllers.Core;
 using Blog.Core.AOP.Attributes;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
@@ -13,10 +14,9 @@ namespace Blog.Controllers.Blog
     /// <summary>
     /// 文章标签
     /// </summary>
-    [ApiController]
     [Route("api/tag")]
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v1)]
-    public class TagController
+    public class TagController : ApiControllerBase
     {
         private readonly ITagSvc _tagSvc;
 

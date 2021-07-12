@@ -5,7 +5,7 @@ using System.IO;
 namespace Blog.Core.Common.Configs
 {
 
-    public class Appsettings
+    public static class Appsettings
     {
         #region System
 

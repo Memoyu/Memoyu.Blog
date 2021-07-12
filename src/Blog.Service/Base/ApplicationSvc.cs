@@ -47,7 +47,7 @@ namespace Blog.Service.Base
         //日志工厂
         private ILoggerFactory _loggerFactory;
         public ILoggerFactory LoggerFactory => LazyGetRequiredService(ref _loggerFactory);
-      
+
         //日志
         protected ILogger Logger => _lazyLogger.Value;
         private Lazy<ILogger> _lazyLogger => new Lazy<ILogger>(() => LoggerFactory?.CreateLogger(GetType().FullName) ?? NullLogger.Instance, true);

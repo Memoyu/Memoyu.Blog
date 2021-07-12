@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Blog.Controllers.Core;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
 using Blog.Service.Blog.Category;
@@ -11,11 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers.Blog.Admin
 {
-    [ApiController]
     [Route("api/admin/category")]
     [ApiExplorerSettings(GroupName = SystemConst.Grouping.GroupName_v2)]
     [Authorize]
-    public class CategoryController
+    public class CategoryController : ApiControllerBase
     {
         private readonly ICategorySvc _categorySvc;
 
