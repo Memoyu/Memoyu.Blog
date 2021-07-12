@@ -2,7 +2,7 @@
   "Serilog": {
     "Using": [
       "Serilog.Sinks.Console",
-      "Serilog.Sinks.File",
+      // "Serilog.Sinks.File",
       "Serilog.Sinks.MariaDB"
       // "Serilog.Sinks.MSSqlServer"
     ],

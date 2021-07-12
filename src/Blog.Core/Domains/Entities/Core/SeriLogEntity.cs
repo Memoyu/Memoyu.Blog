@@ -8,8 +8,8 @@ namespace Blog.Core.Domains.Entities.Core
     /// <summary>
     /// 日志表
     /// </summary>
-    [Table(DisableSyncStructure = true, Name = SystemConst.DbTablePrefix + "_log")]
-    public class LogEntity
+    [Table(DisableSyncStructure = true, Name = SystemConst.DbTablePrefix + "_serilog")]
+    public class SeriLogEntity
     {
         public long Id { get; set; }
 
