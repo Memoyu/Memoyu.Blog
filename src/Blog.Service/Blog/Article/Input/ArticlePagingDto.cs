@@ -22,7 +22,7 @@ namespace Blog.Service.Blog.Article.Input
         /// <summary>
         /// 是否置顶
         /// </summary>
-        public bool IsTop { get; set; }
+        public bool? IsTop { get; set; }
 
         /// <summary>
         /// 分类Id

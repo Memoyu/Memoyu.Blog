@@ -28,7 +28,7 @@ namespace Blog.Service.Blog.Article
                 .Include(a => a.Category)
                 .IncludeMany(a => a.Tags)
                 .Where(a => !a.IsDeleted)
-                .Where(a => a.IsTop == pagingDto.IsTop)
+                .WhereIf( pagingDto.IsTop.HasValue, a => a.IsTop == pagingDto.IsTop)
                 .WhereIf(pagingDto.CategoryId > 0, a => a.CategoryId == pagingDto.CategoryId)
                 .WhereIf(!string.IsNullOrWhiteSpace(pagingDto.Title), a => a.Title.Contains(pagingDto.Title))
                 .WhereIf(!string.IsNullOrWhiteSpace(pagingDto.Author), a => a.Title.Contains(pagingDto.Author))

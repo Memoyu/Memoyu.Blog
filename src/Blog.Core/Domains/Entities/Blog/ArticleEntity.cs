@@ -44,7 +44,7 @@ namespace Blog.Core.Domains.Entities.Blog
         /// <summary>
         /// 链接
         /// </summary>
-        [Column(StringLength = 100)]
+        [Column(StringLength = 300)]
         public string Url { get; set; }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Blog.Core.Domains.Entities.Blog
         /// <summary>
         /// 缩略图地址
         /// </summary>
-        [Column(StringLength = 100)]
+        [Column(StringLength = 300)]
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
