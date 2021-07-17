@@ -50,6 +50,23 @@
             </summary>
             <param name="file"></param>
         </member>
+        <member name="T:Blog.Controllers.Core.MonitorController">
+            <summary>
+            监控信息
+            </summary>
+        </member>
+        <member name="M:Blog.Controllers.Core.MonitorController.GetServerInfo">
+            <summary>
+            服务器配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.Core.MonitorController.GetBlogInfo">
+            <summary>
+            博客统计信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Blog.Controllers.Blog.Admin.ArticleController.GetPostDetailAsync(System.String)">
             <summary>
             根据URL获取文章详情

@@ -371,5 +371,66 @@
             <param name="file"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.Service.Core.Monitor.IMonitorSvc.GetBlogInfo">
+            <summary>
+            获取博客统计信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.BlogInfoDto.ArticleTotal">
+            <summary>
+            文章总数
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.BlogInfoDto.CategoryTotal">
+            <summary>
+            分类总数
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.BlogInfoDto.TagTotal">
+            <summary>
+            标签总数
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.BlogInfoDto.CommentTotal">
+            <summary>
+            留言总数
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.ServerInfoDto.EnvironmentName">
+            <summary>
+            环境变量
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.ServerInfoDto.OsArchitecture">
+            <summary>
+            系统架构
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.ServerInfoDto.ContentRootPath">
+            <summary>
+            ContentRootPath
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.ServerInfoDto.WebRootPath">
+            <summary>
+            WebRootPath
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.ServerInfoDto.FrameworkDescription">
+            <summary>
+            .NET Core版本
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.ServerInfoDto.MemoryFootprint">
+            <summary>
+            内存占用
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Core.Monitor.Output.ServerInfoDto.WorkingTime">
+            <summary>
+            启动时间
+            </summary>
+        </member>
     </members>
 </doc>
