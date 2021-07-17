@@ -26,9 +26,10 @@ namespace Blog.Service.Blog.Article
             var articles = await _articleRepo
                 .Select
                 .Include(a => a.Category)
+                .Include(a => a.User)
                 .IncludeMany(a => a.Tags)
                 .Where(a => !a.IsDeleted)
-                .WhereIf( pagingDto.IsTop.HasValue, a => a.IsTop == pagingDto.IsTop)
+                .WhereIf(pagingDto.IsTop.HasValue, a => a.IsTop == pagingDto.IsTop)
                 .WhereIf(pagingDto.CategoryId > 0, a => a.CategoryId == pagingDto.CategoryId)
                 .WhereIf(!string.IsNullOrWhiteSpace(pagingDto.Title), a => a.Title.Contains(pagingDto.Title))
                 .WhereIf(!string.IsNullOrWhiteSpace(pagingDto.Author), a => a.Title.Contains(pagingDto.Author))
@@ -41,22 +42,18 @@ namespace Blog.Service.Blog.Article
 
         }
 
-        public async Task<ServiceResult<ArticleContentDto>> GetAsync(long id)
+        public async Task<ServiceResult<ArticleDto>> GetAsync(long id)
         {
-            try
-            {
-
-                var article = await _articleRepo
+            var article = await _articleRepo
                     .Select
+                    .Include(a => a.Category)
+                    .Include(a => a.User)
+                    .IncludeMany(a => a.Tags)
+                    .LeftJoin(a=>a.ArticleContent.ArticleId == a.Id)
                     .Where(a => a.Id == id)
-                    .ToOneAsync<ArticleContentDto>();
-                if (article == null) return await Task.FromResult(ServiceResult<ArticleContentDto>.Failed($"Id:{id} 的文章不存在"));
-                return await Task.FromResult(ServiceResult<ArticleContentDto>.Successed(article));
-            }
-            catch (Exception ex)
-            {
-                return await Task.FromResult(ServiceResult<ArticleContentDto>.Failed($"获取文章详情异常"));
-            }
+                    .ToOneAsync();
+            if (article == null) return await Task.FromResult(ServiceResult<ArticleDto>.Failed($"Id:{id} 的文章不存在"));
+            return await Task.FromResult(ServiceResult<ArticleDto>.Successed(Mapper.Map<ArticleDto>(article)));
         }
     }
 }

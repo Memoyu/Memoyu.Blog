@@ -1,6 +1,6 @@
 ﻿namespace Blog.Service.Blog.Article.Output
 {
-    public class ArticleContentDto : ArticleDto
+    public class ArticleContentDto
     {
         /// <summary>
         /// HTML

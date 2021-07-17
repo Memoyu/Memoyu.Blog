@@ -19,6 +19,6 @@ namespace Blog.Service.Blog.Article
         /// </summary>
         /// <param name="id">文章Id</param>
         /// <returns></returns>
-        Task<ServiceResult<ArticleContentDto>> GetAsync(long id);
+        Task<ServiceResult<ArticleDto>> GetAsync(long id);
     }
 }

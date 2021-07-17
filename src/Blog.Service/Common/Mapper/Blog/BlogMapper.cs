@@ -20,6 +20,7 @@ namespace Blog.Service.Common.Mapper.Blog
             CreateMap<AddTagDto, TagEntity>();
             CreateMap<ModifyTagDto, TagEntity>();
 
+            CreateMap<ArticleContentEntity, ArticleContentDto>();
             CreateMap<ArticleEntity, ArticleDto>()
                 .ForMember(d => d.Category, opt => opt.MapFrom(src=>src.Category));
         }

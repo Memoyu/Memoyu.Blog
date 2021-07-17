@@ -12,6 +12,7 @@ using Blog.Core.AOP.Attributes;
 using Blog.Core.Common.Configs;
 using Blog.Core.Domains.Common;
 using Blog.Core.Domains.Common.Consts;
+using Blog.Core.Domains.Common.Enums.Base;
 using Blog.Core.Domains.Entities.Core;
 using Blog.Core.Extensions;
 using Blog.Core.Interface.IRepositories.Core;
@@ -119,6 +120,7 @@ namespace Blog.Service.Core.Auth
             }
             //将用户信息写入数据库，存在则更新
             var entity = Mapper.Map<UserEntity>(userInfo);
+            entity.UserType = (int)UserTypeEnums.GitHub;
             await _userRepo.AddOrUpdateAsync(entity);
             var admins = await _adminUserRepo.GetsAsync();
             if (admins.All(a => a.UserId != userInfo.Id))

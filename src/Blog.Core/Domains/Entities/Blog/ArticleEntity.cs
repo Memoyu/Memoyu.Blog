@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Blog.Core.Domains.Common.Base;
 using Blog.Core.Domains.Common.Consts;
+using Blog.Core.Domains.Entities.Core;
 using FreeSql.DataAnnotations;
 
 namespace Blog.Core.Domains.Entities.Blog
@@ -34,12 +35,6 @@ namespace Blog.Core.Domains.Entities.Blog
         /// </summary>
         [Column(StringLength = 500)]
         public string Introduction { get; set; }
-
-        /// <summary>
-        /// 作者
-        /// </summary>
-        [Column(StringLength = 50)]
-        public string Author { get; set; }
 
         /// <summary>
         /// 链接
@@ -77,10 +72,17 @@ namespace Blog.Core.Domains.Entities.Blog
         [Navigate]
         public virtual CategoryEntity Category { get; set; }
 
+        [Navigate("CreateUserId")]
+        public virtual UserEntity User { get; set; }
+
+
         [Navigate(ManyToMany = typeof(ArticleTagEntity))]
         public virtual IEnumerable<TagEntity> Tags { get; set; }
 
         [Navigate("ArticleId")]
         public virtual ICollection<ArticleTagEntity> ArticleTags { get; set; }
+
+
+        public virtual ArticleContentEntity ArticleContent { get; set; }
     }
 }

@@ -42,12 +42,12 @@ namespace Blog.Controllers.Blog
         /// <summary>
         /// 获取文章详情
         /// </summary>
-        /// <param name="id">分页条件</param>
+        /// <param name="id">文章Id</param>
         [HttpGet("{id}")]
-        public async Task<ServiceResult<ArticleContentDto>> GetAsync(long id)
+        public async Task<ServiceResult<ArticleDto>> GetAsync(long id)
         {
             if (id <= 0)
-                return ServiceResult<ArticleContentDto>.Failed("id不能小于等于0");
+                return ServiceResult<ArticleDto>.Failed("id不能小于等于0");
             return await Task.FromResult(await _articleSvc.GetAsync(id));
         }
     }

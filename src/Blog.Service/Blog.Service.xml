@@ -83,9 +83,9 @@
             简介
             </summary>
         </member>
-        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Author">
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.AuthorId">
             <summary>
-            作者
+            作者Id
             </summary>
         </member>
         <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.Url">
@@ -123,9 +123,19 @@
             标签
             </summary>
         </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.User">
+            <summary>
+            作者
+            </summary>
+        </member>
         <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.CreateTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.Article.Output.ArticleDto.ArticleContent">
+            <summary>
+            文章内容
             </summary>
         </member>
         <member name="M:Blog.Service.Blog.Category.ICategorySvc.AddAsync(Blog.Service.Blog.Category.Input.AddCategoryDto)">

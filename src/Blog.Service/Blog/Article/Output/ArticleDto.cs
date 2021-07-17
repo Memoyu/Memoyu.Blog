@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Blog.Service.Blog.Category.Output;
 using Blog.Service.Blog.Tag.Output;
+using Blog.Service.Core.Auth.Output;
 
 namespace Blog.Service.Blog.Article.Output
 {
@@ -30,9 +31,9 @@ namespace Blog.Service.Blog.Article.Output
         public string Introduction { get; set; }
 
         /// <summary>
-        /// 作者
+        /// 作者Id
         /// </summary>
-        public string Author { get; set; }
+        public string AuthorId { get; set; }
 
         /// <summary>
         /// 链接
@@ -70,8 +71,18 @@ namespace Blog.Service.Blog.Article.Output
         public List<TagDto> Tags { get; set; }
 
         /// <summary>
+        /// 作者
+        /// </summary>
+        public UserDto User { get; set; }
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 文章内容
+        /// </summary>
+        public ArticleContentDto ArticleContent { get; set; }
     }
 }
