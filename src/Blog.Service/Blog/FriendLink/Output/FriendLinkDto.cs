@@ -21,9 +21,19 @@ namespace Blog.Service.Blog.FriendLink.Output
         public string Desc { get; set; }
 
         /// <summary>
+        /// 头像地址
+        /// </summary>
+        public string AvatarUrl { get; set; }
+
+        /// <summary>
         /// 链接
         /// </summary>
         public string LinkUrl { get; set; }
+
+        /// <summary>
+        /// 链接类型：0：友链；1：推荐网站
+        /// </summary>
+        public int Type { get; set; }
 
         public DateTime CreateTime { get; set; }
     }

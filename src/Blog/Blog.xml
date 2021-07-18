@@ -150,6 +150,27 @@
             获取文章分类列表
             </summary>
         </member>
+        <member name="T:Blog.Controllers.Blog.FriendLinkController">
+            <summary>
+            友链
+            </summary>
+        </member>
+        <member name="M:Blog.Controllers.Blog.FriendLinkController.GetsAsync">
+            <summary>
+            获取友链列表
+            </summary>
+        </member>
+        <member name="M:Blog.Controllers.Blog.FriendLinkController.GetAsync(System.Int64)">
+            <summary>
+            获取友链
+            </summary>
+            <param name="id">友链id</param>
+        </member>
+        <member name="M:Blog.Controllers.Blog.FriendLinkController.GetByTypeAsync(System.Int32)">
+            <summary>
+            获取友链列表(根据类型获取)
+            </summary>
+        </member>
         <member name="T:Blog.Controllers.Blog.TagController">
             <summary>
             文章标签

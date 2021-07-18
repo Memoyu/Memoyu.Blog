@@ -197,6 +197,26 @@
             关联文章数量
             </summary>
         </member>
+        <member name="M:Blog.Service.Blog.FriendLink.IFriendLinkSvc.GetsAsync">
+            <summary>
+            获取友链列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.FriendLink.IFriendLinkSvc.GetAsync(System.Int64)">
+            <summary>
+            获取友链
+            </summary>
+            <param name="id">友链id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Service.Blog.FriendLink.IFriendLinkSvc.GetByTypeAsync(System.Int32)">
+            <summary>
+            获取友链列表(根据类型获取)
+            </summary>
+            <param name="type">类型：0：友链；1：推荐网站</param>
+            <returns></returns>
+        </member>
         <member name="P:Blog.Service.Blog.FriendLink.Output.FriendLinkDto.Title">
             <summary>
             标题
@@ -207,9 +227,19 @@
             简介
             </summary>
         </member>
+        <member name="P:Blog.Service.Blog.FriendLink.Output.FriendLinkDto.AvatarUrl">
+            <summary>
+            头像地址
+            </summary>
+        </member>
         <member name="P:Blog.Service.Blog.FriendLink.Output.FriendLinkDto.LinkUrl">
             <summary>
             链接
+            </summary>
+        </member>
+        <member name="P:Blog.Service.Blog.FriendLink.Output.FriendLinkDto.Type">
+            <summary>
+            链接类型：0：友链；1：推荐网站
             </summary>
         </member>
         <member name="P:Blog.Service.Blog.Tag.Input.AddTagDto.Name">
